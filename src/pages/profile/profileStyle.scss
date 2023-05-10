@@ -1,0 +1,73 @@
+@import '../styles/index.scss';
+
+body {
+    @extend %bodyMain
+}
+
+.container {
+    @include containerBasic(700px, 615px);
+    padding: 2rem;
+}
+
+.container__info_about-user {
+    flex: 1 1 auto;
+    &_info {
+        display: flex;
+        justify-content:space-between;
+        border-bottom: 0.2rem solid $colorViolet ;
+        margin: 0 1rem 15px;
+        padding: 0 5px;
+        input {
+            width: 40%;
+            border: none;
+            background-color: $colorPastelPink;
+            text-align: end;
+            color: white;
+        }
+    }
+}
+
+.container__info_foto {
+    height: 130px;
+    width: 130px;
+    align-self: center;
+    color: aliceblue;
+    border: 5px solid gold;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    &__img {
+        min-width: 100%;
+        min-height: 100%;
+        flex-shrink: 0
+    }
+}
+
+.container__info__buttons {
+    align-self: center;
+}
+
+.container__info_about-user_button {
+    width: 60%;
+    border-radius: 10px;
+    background-color: white;
+    border: $colorViolet;
+    margin-bottom: 7px;
+    margin-top: 1rem;
+    color: $colorViolet;
+}
+
+form {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+}
+
+.container__info_about-user_button,
+.link-enter {
+    align-self: center;
+}

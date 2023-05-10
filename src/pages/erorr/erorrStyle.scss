@@ -1,0 +1,23 @@
+@import '../styles/index.scss';
+
+body{
+    @extend %bodyMain;
+    background-color: $colorPastelPink;
+}
+
+.container_erorr {
+    @extend %containerErorr;
+    &__picture{
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .error-picture {
+        height: 100%;
+        width: auto;
+    }
+    .link-enter {
+        font-size: 25px;
+    }
+}

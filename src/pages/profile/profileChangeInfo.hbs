@@ -1,0 +1,19 @@
+<html lang="en">
+  {{> components/head style="../profile/profileStyle.scss" titlePage="Profile" }}
+  <body>
+    <div class="container">
+      <form class="container__info_about-user">
+        {{> profile/components/inputNoValue inputName="avatar" inputType="file" inputText="Avatar:" }}
+        {{> profile/components/inputValue inputName="email" inputType="email" inputText="Email:" inputValue="1234@gmail.com" }}
+        {{> profile/components/inputValue inputName="login" inputType="text" inputText="Login:" inputValue="Lala" }}
+        {{> profile/components/inputValue inputName="first_name" inputType="text" inputText="Name:" inputValue="Ivan" }}
+        {{> profile/components/inputValue inputName="second_name" inputType="text" inputText="Surname:" inputValue="Petrov" }}
+        {{> profile/components/inputValue inputName="display_name" inputType="text" inputText="Chat name:" inputValue="Lala" }}
+        {{> profile/components/inputValue inputName="phone" inputType="tel" inputText="Phone:" inputValue="+79098135633" }}
+        {{> profile/components/buttonSave }}
+        <br>
+        <a href="./profile.hbs" class="link-enter">Go to Profil</a>
+      </form>
+    </div>
+  </body>
+</html>

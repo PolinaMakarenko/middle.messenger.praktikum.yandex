@@ -1,0 +1,15 @@
+<html lang="en">
+  {{> components/head style="../chats/chatsStyle.scss" titlePage="Chat" }}
+  <body>
+    <div class="container__greed">
+      <div class="all-chats">
+        {{> chats/components/chatsHeader }}
+        {{> chats/components/allMessage }}
+      </div>
+      <div class="chat">
+        {{> chats/components/chatMessage }}
+        {{> chats/components/newMessage }}
+      </div>
+    </div>
+  </body>
+</html>

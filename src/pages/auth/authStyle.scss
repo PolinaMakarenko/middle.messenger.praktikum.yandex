@@ -1,0 +1,30 @@
+@import '../styles/index.scss';
+
+body {
+    @extend %bodyMain
+}
+
+.container__form_login {
+    @include containerBasic(340px, 450px);
+}
+
+.container__form_reg {
+    @include containerBasic(340px, 615px);
+}
+
+.login-form {
+    @include formStyle(1em,2em,10px) 
+}
+
+.reg-form {
+    @include formStyle(0,0.9em,0) 
+}
+
+.login-form__submit,
+.reg-form__submit {
+    @extend %formSubmit 
+}
+
+
+
+

@@ -1,0 +1,91 @@
+%bodyMain {
+    width: 100%;
+    height: 100%;
+    background-color: $colorSofBlue;
+    box-sizing: border-box;
+    justify-content:center;
+}
+
+@mixin containerBasic ($h, $w) {
+    position:absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: calc(50% - $w/2);
+    color:white;  
+    background-color: $colorPastelPink;
+    width: $h;
+    height: $w;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@mixin formStyle ($padingImp, $marginBot, $lablePadding) {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    &:last-child {
+        justify-content:end
+    }
+    &__name,
+    &__buttons {
+        text-align: center;
+    }
+
+    &__login-input,
+    &__password-input,
+    &__email-input,
+    &__first_name-input,
+    &__second_name-input,
+    &__phone-input {
+        display: flex;
+        flex-direction: column;
+        padding: $padingImp;
+        margin-bottom: $marginBot;
+        label {
+            padding-bottom: $lablePadding;
+        }
+        input{
+            border: none;
+            border-bottom: 0.2em solid white;
+            background-color: $colorPastelPink;
+        }
+        &__buttons{
+            padding: 0 1em 0 1em;
+        }
+    }      
+}
+
+%formSubmit {
+    width: 100%;
+    border-radius: 10px;
+    background-color: white;
+    border:#C5D7F9;
+    margin-bottom: 7px;
+    color: $colorViolet;
+}
+
+.link-enter {
+    color: white;
+}
+
+%containerErorr {
+    position:absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: calc(50% - 600px/2);
+    color:white;  
+    width: 650px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
