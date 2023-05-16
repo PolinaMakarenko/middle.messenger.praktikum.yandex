@@ -1,0 +1,11 @@
+<html lang="en">
+  {{> components/head style="../erorr/erorrStyle.scss" titlePage="404" }}
+  <body>
+    <main>
+      <div class="container_erorr">
+        {{> erorr/components/containerError erorrNumber=404 erorrText="Oh no...We lost this page" erorrPic='../../../static/404Erorr.png' }}
+          <a href="../chats/chats.hbs" class="link-enter">Go to chats</a>
+      </div>
+    </main>
+  </body>
+</html>
