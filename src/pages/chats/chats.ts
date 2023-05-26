@@ -1,6 +1,8 @@
 import Input2 from "../../components/input2/input2";
+import FormMess from "../../components/formMess/formMess";
 import Link from "../../components/link/link";
 import Block from "../../core/Block";
+import { submitMess } from "../../core/Validation";
 import template from "./chats.hbs";
 import "./chatsStyle.scss";
 
@@ -25,11 +27,14 @@ export default class Chats extends Block {
       type: "text",
       placeholder: "Search",
   });
-  this.children.inputNewMess = new Input2({
-        class: "chat_new-message_input",
-        name: "message",
-        type: "text",
-        placeholder: "New message",
+  this.children.newMess = new FormMess({
+    events: {
+      // submit: (event)=> { event.preventDefault() 
+      //   console.log(event.target.value)},
+      submit: submitMess
+
+    },
+    
     });
   
     this.children.link = new Link({

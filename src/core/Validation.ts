@@ -22,7 +22,7 @@ const chekValid = (name: string, checValue: string): string => {
         return (regExp.test(checValue)? "" : ErorrMessage.PHONE )
     }
     if (name == "message") {
-        const regExp = /^[+-d]?\d{10,15}$/;
+        const regExp = /^.+$/;
         return (regExp.test(checValue)? "" : ErorrMessage.MESSAGE )
     }
     if(name == "first_name" || name == "second_name") {
@@ -42,68 +42,48 @@ const chekValid = (name: string, checValue: string): string => {
 }
   
 export const checkInputValue = (event:HTMLInputElement): boolean => {
-    // const targetInput = event.target as HTMLInputElement;
-    // console.log(event)
-    // console.log(targetInput.value)
-
     const parent = event.parentElement;
-    // console.log(parent)
-
     const error = parent?.querySelector(".error-message");
     error!.textContent = chekValid( event.name, event.value );
-    // console.log(error);
-    // error?.display = 'block'
-
     return (error!.textContent)? false : true
-  
-    // parent!.style.position = "relative";
-  
-    // const nameInput = validationInputs[targetInput.name];
-    // console.log(nameInput);
-    
-    // const isValid = nameInput.regExp.test(targetInput.value);
-  
-    // if (!isValid) {
-    //   error!.textContent = nameInput.errorMessage;
-    // } else {
-    //   error!.textContent = "";
-    // }
+
 };
 
 
-
 export const focusin = (event:InputEvent): void => {
-    console.log(event)
-    // const eventInput = event.target as HTMLInputElement;
     checkInputValue(event.target as HTMLInputElement)
 };
   
 export const focusout = (event:InputEvent): void => {
-    // const eventInput = event.target as HTMLInputElement;
     checkInputValue(event.target as HTMLInputElement)
 };
 
 export const submit = (event: Event): void =>{
     event.preventDefault();
-    console.log(event.target)
-    // console.log(event.srcElement)
-    // const inputs = event.getElementsByTagName('input')
     const allFormInputs = document.querySelectorAll("input");
-    // console.log(formInputs)
     const data: Record<string, string> = {};
     allFormInputs.forEach((input: HTMLInputElement) => {
         (checkInputValue(input)) ? data[input.name] = input.value : ""
     });
+    (allFormInputs.length == Object.keys(data).length) 
+    ? ( console.log(data), 
+   (event.target as HTMLFormElement ).reset()): ""
 
-    (allFormInputs.length == Object.keys(data).length) ? console.log(data) : ""
+}
 
-
-
-    
-
-
-    
-
+export const submitMess = (event: SubmitEvent): void =>{
+    event.preventDefault();
+    const ar = (event.target as HTMLElement ).getElementsByTagName("input")
+    const data: Record<string, string> = {};
+    const error = document.querySelector(".error-message");
+    if (chekValid( ar[0].name, ar[0].value )) {
+        error!.textContent = chekValid( ar[0].name, ar[0].value )
+    } else {
+        error!.textContent = "";
+        data[ar[0].name] = ar[0].value;
+        console.log(data); 
+        (event.target as HTMLFormElement ).reset()
+    }
 }
 
 
