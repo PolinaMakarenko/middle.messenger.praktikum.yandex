@@ -4,11 +4,17 @@ import template from "./profileChangeInfo.hbs";
 import "../profileStyle.scss";
 import Buttons from "../../../components/button/button";
 import Input from "../../../components/input/input";
-import { focusin, focusout } from "../../../core/Validation";
+import { focusin, focusout,submit } from "../../../core/Validation";
+
+interface ProfileChangeInfoProps {
+  title?: string;
+}
 
 export default class ProfileChangeInfo extends Block {
-  constructor() {
-    super();
+  constructor(props?: ProfileChangeInfoProps) {
+    super({ ...props,
+      events: { submit },
+  });
   }
 
   init() {

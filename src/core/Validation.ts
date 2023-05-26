@@ -13,7 +13,7 @@ const chekValid = (name: string, checValue: string): string => {
     const regExp = /^(?!^\d+)[a-zA-z0-9-_]{3,20}$/;
     return (regExp.test(checValue)? "" : ErorrMessage.LOGIN )
     }
-    if (name == "password") {
+    if (name == "password" || name == "newPassword" || name == "oldPassword") {
     const regExp = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/;
     return (regExp.test(checValue)? "" : ErorrMessage.PASSWORD )
     }
@@ -88,14 +88,14 @@ export const submit = (event: Event): void =>{
     console.log(event.target)
     // console.log(event.srcElement)
     // const inputs = event.getElementsByTagName('input')
-    const formInputs = document.querySelectorAll("input");
-    console.log(formInputs)
+    const allFormInputs = document.querySelectorAll("input");
+    // console.log(formInputs)
     const data: Record<string, string> = {};
-    formInputs.forEach((input: HTMLInputElement) => {
+    allFormInputs.forEach((input: HTMLInputElement) => {
         (checkInputValue(input)) ? data[input.name] = input.value : ""
     });
 
-    (formInputs.length == Object.keys(data).length) ? console.log(data) : ""
+    (allFormInputs.length == Object.keys(data).length) ? console.log(data) : ""
 
 
 
