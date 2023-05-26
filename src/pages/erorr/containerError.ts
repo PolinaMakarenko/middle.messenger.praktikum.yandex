@@ -3,6 +3,7 @@ import template from "./containerError.hbs";
 import Link from "../../components/link/link";
 
 import "./erorrStyle.scss";
+import MyFile from './500Erorr.png'
 // type glf = "../../../static/404Erorr.png"
 
 interface ErrorContProps {

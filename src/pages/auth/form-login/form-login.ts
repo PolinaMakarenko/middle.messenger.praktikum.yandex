@@ -13,30 +13,9 @@ interface FormLoginProps {
 export default class FormLogin extends Block {
   constructor(props?: FormLoginProps) {
     super({ ...props,
-      events: {
-        submit
-        // submit: (event) => {
-        //   this.onSubmitForm(event);
-        // },
-        // submit: (e: FormDataEvent) => this.dataLog(e),
-        } });
+      events: {submit},
+    });
   }
-  // events: {
-  //   submit: (e: FormDataEvent) => this.dataLog(e),
-  //   },
-  // onSubmitForm(event) {
-  //   event?.preventDefault()
-  //   console.log(event.target)
-
-  // }
-  // dataLog(e: Event) {
-    // e.preventDefault();
-    // const formData = new FormData(e.target as HTMLFormElement);
-    // const name = formData.get('login')
-    // eslint-disable-next-line no-console
-    // console.log(e.target.value);
-    // eslint-disable-next-line no-console
-  // }
 
   init() {
     this.children.inputLogin = new Input({

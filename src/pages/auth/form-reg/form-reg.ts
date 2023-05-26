@@ -4,7 +4,7 @@ import Input from "../../../components/input/input";
 import Buttons from "../../../components/button/button";
 import Link from "../../../components/link/link";
 import "../authStyle.scss";
-import { focusin, focusout } from "../../../core/Validation";
+import { focusin, focusout, submit } from "../../../core/Validation";
 
 interface FormRegProps {
   title?: string;
@@ -12,18 +12,9 @@ interface FormRegProps {
 
 export default class FormReg extends Block {
   constructor(props?: FormRegProps) {
-    super({ ...props,  events: {
-        submit: (e: FormDataEvent) => this.ref(e),
-        },
+    super({ ...props,  
+      events: { submit },
     });
-  }
-  ref(e: Event) {
-    e.preventDefault();
-    const formData = new FormData(e.target as HTMLFormElement);
-    // const name = formData.get('login')
-    // eslint-disable-next-line no-console
-    console.log(formData);
-    // eslint-disable-next-line no-console
   }
 
   init() {
