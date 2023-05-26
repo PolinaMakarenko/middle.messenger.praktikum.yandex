@@ -1,6 +1,5 @@
 import Block from "../../core/Block";
 import template from "./avatar.hbs";
-import Main from "../../../static/Main.png";
 
 interface AvatarProps {
     class: string;
