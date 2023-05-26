@@ -1,12 +1,15 @@
 @import '../styles/index.scss';
+// @import '../styles/main.scss'
 
-body{
+.body{
     @extend %bodyMain;
+    // @include newB($colorPastelPink)
     background-color: $colorPastelPink;
 }
 
 .container_erorr {
     @extend %containerErorr;
+    // background-color: $colorPastelPink;
     &__picture{
         overflow: hidden;
         display: flex;
