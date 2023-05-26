@@ -7,12 +7,15 @@ import containerError from "./pages/erorr/containerError";
 import ProfileChangeInfo from "./pages/profile/pChangeInfo/profileChangeInfo";
 import ProfileChangePassword from "./pages/profile/pChangePassword/profileChangePassword";
 import Profile from "./pages/profile/profile/profile";
+import img500 from "../static/500Erorr.png"
+import img404 from "../static/404Erorr.png"
+
 
 
 
 window.addEventListener("DOMContentLoaded", () => {
-    const page404 = new containerError({erorrNumber: "404",erorrText:"Oh no...We lost this page"  });
-    const page500 = new containerError({erorrNumber:"500", erorrText:"Sorry unexpected error", erorrPic:"../../../static/500Erorr.png" });
+    const page404 = new containerError({erorrNumber: "404",erorrText:"Oh no...We lost this page", img:img404  });
+    const page500 = new containerError({erorrNumber:"500", erorrText:"Sorry unexpected error", img:img500  });
     const login = new FormLogin();
     const registration = new FormReg();
     const profile = new Profile({

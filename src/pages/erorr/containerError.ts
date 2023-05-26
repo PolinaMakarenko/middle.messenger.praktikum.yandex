@@ -3,13 +3,17 @@ import template from "./containerError.hbs";
 import Link from "../../components/link/link";
 
 import "./erorrStyle.scss";
-import MyFile from './500Erorr.png'
+import Erorr404 from "../../../static/404Erorr.png";
+import Erorr500 from "../../../static/500Erorr.png";
+import Avatar from "../../components/avatar/avatar";
+
 // type glf = "../../../static/404Erorr.png"
 
 interface ErrorContProps {
-    erorrNumber?: string;
+    erorrNumber: string;
     erorrText?: string;
-    erorrPic?: string ;
+    // erorrPic?: string ;
+    img?: string
   }
 
 export default class containerError extends Block {

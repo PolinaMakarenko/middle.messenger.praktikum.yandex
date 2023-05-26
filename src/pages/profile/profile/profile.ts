@@ -2,6 +2,8 @@ import Block from "../../../core/Block";
 import Link from "../../../components/link/link";
 import template from "./profile.hbs";
 import "../profileStyle.scss";
+import Avatar from "../../../components/avatar/avatar";
+import constAvatar from "../../../../static/Main.png"
 
 
 interface ProfileProps {
@@ -19,6 +21,10 @@ export default class Profile extends Block {
   }
 
   init() {
+    this.children.avatar = new Avatar({
+      class: "container__info_foto_img",
+      img: constAvatar,
+    });
     this.children.linkInfo = new Link({
       href: "/ChangeInfo",
       class: "link-enter",
