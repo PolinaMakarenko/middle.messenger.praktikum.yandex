@@ -16,16 +16,14 @@ class Block {
   private _element: HTMLElement | null = null;
   private _meta: Record<string, unknown> | null = null;
  
-    /** JSDoc
-   * @param {string} tagName
-   * @param {Object} props
-   *
-   * @returns {void}
-   */
+  /** JSDoc
+  * @param {string} tagName
+  * @param {Object} props
+  *
+  * @returns {void}
+  * */
 
-
-
-  constructor( childrenAndProps: any = {}) {
+  constructor( childrenAndProps: any = {}): void {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(childrenAndProps);
@@ -57,6 +55,15 @@ class Block {
     });
 
     return { props, children };
+  }
+  private _addEvents() {
+    const { events = {} } = this.props as {
+      events: Record<string, () => void>;
+    };
+
+    Object.keys(events).forEach((eventName) => {
+      this._element?.addEventListener(eventName, events[eventName]);
+    });
   }
 
   private _registerEvents(eventBus: EventBus) {
@@ -99,11 +106,6 @@ class Block {
     if (this.componentDidUpdate(oldProps, newProps)) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
-    // const response = this.componentDidUpdate(oldProps, newProps);
-    // if (!response) {
-    //   return;
-    // }
-    // this._render();
   }
 
   protected componentDidUpdate(oldProps: any, newProps: any) {
@@ -124,23 +126,10 @@ class Block {
 
   private _render() {
     const fragment = this.render();
-
-    this._removeEvents();
-
-    
-
-    //! Убрал тут закомментировал
     // this._element!.innerHTML = "";
-
-    // this._element!.append(fragment);
-
-    //* Добавил
     const newElement = fragment.firstElementChild as HTMLElement;
-    //с вебинара 
     this._element?.replaceWith(newElement);
     this._element = newElement;
-
-    console.log(this._element);
 
     this._addEvents();
   }
@@ -164,11 +153,8 @@ class Block {
       if (!stub) {
         return;
       }
-
-      //*ДОБАВИЛ ТУТ
       component.getContent()?.append(...Array.from(stub.childNodes));
-      //*ДОБАВИЛ ТУТ
-
+  
       stub.replaceWith(component.getContent()!);
     });
 
@@ -177,31 +163,6 @@ class Block {
 
   protected render(): DocumentFragment {
     return new DocumentFragment();
-  }
-
-  //? УБРАЛ И ДОБАВИЛ СВЕРХУ
-  private _addEvents() {
-    const { events = {} } = this.props as {
-      events: Record<string, () => void>;
-    };
-
-    Object.keys(events).forEach((eventName) => {
-      this._element?.addEventListener(eventName, events[eventName]);
-    });
-  }
-
-  private _removeEvents() {
-    const { events } = this.props as {
-      events: Record<string, () => void>;
-    };
-
-    if (!events || !this._element) {
-      return;
-    }
-
-    Object.keys(events).forEach((eventName) => {
-      this._element!.addEventListener(eventName, events[eventName]);
-    });
   }
 
   public getContent() {
