@@ -1,9 +1,7 @@
-@import '../styles/index.scss';
+@import '../../pages/styles/index.scss';
 
 body {
-    @extend %bodyMain;
-    // @include newB($colorSofBlue)
-    // background-color: $colorSofBlue;
+    @extend %bodyMain
 }
 
 .container__form_login {
