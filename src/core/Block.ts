@@ -75,8 +75,12 @@ class Block {
       events: Record<string, () => void>;
     };
 
+    if (!events || !this._element) {
+      return;
+    }
+
     Object.keys(events).forEach((eventName) => {
-      this._element?.addEventListener(eventName, events[eventName]);
+      this._element!.addEventListener(eventName, events[eventName]);
     });
   }
 
