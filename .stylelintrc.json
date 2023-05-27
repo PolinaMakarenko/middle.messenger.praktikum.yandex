@@ -1,9 +1,22 @@
 {
     "extends": "stylelint-config-standard",
+    "plugins": ["stylelint-scss"],
     "rules": {
-      "color-hex-case": "lower"
+      "at-rule-no-unknown": null,
+      "block-no-empty": null,
+      "selector-class-pattern": null,
+      "rule-empty-line-before": null,
+      "import-notation": null,
+      "length-zero-no-unit": null,
+      "color-function-notation": null,
+      "alpha-value-notation": null,
+      "shorthand-property-no-redundant-values": null,
+      "no-duplicate-selectors": null
     },
     "ignoreFiles": [
-      "build/*"
+      "build/*",
+      "dist/*", 
+      "node_modules/*", 
+      ".parcel-cache"
     ]
   } 
