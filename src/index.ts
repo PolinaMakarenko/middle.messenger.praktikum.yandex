@@ -51,6 +51,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const chats = new Chats({allChats})
 
     renderDom("#app", allPages);
+    console.log(window.location.pathname)
 
     switch (window.location.pathname) {
       case "/home":
@@ -84,7 +85,4 @@ window.addEventListener("DOMContentLoaded", () => {
         renderDom("#app", allPages);
         break;
     }
-
-
-
   });
