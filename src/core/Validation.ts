@@ -30,7 +30,7 @@ const chekValid = (name: string, checValue: string): string => {
         return (regExp.test(checValue)? "" : ErorrMessage.FSNAME )
     }
     if (name == "email") {
-        const regExp= /^[\d|+]\d{9,15}/;
+        const regExp= /[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+/;
         return (regExp.test(checValue)? "" : ErorrMessage.EMAIL )
     } 
     if (name == "display_name") {
