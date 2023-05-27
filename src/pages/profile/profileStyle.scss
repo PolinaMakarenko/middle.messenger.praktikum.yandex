@@ -6,6 +6,7 @@ body {
 
 .container {
     @include containerBasic(700px, 615px);
+    
     padding: 2rem;
 }
 

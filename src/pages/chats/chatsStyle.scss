@@ -8,6 +8,7 @@
 }
 
 .all-chats {
+    background-color: white;
     &__header {
         display: flex;
         flex-direction: column;
@@ -55,10 +56,6 @@
             padding-left: 1em;
         }
     }
-}
-
-.all-chats {
-    background-color: white;
 }
 
 .chat{
