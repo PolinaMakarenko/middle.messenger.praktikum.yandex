@@ -30,7 +30,7 @@ const chekValid = (name: string, checValue: string): string => {
         return (regExp.test(checValue)? "" : ErorrMessage.FSNAME )
     }
     if (name == "email") {
-        const regExp= /^[A-Za-z0-9\-]+@[A-Za-z]+(\.[A-Za-z]+)+$/;
+        const regExp= /^[\d|+]\d{9,15}/;
         return (regExp.test(checValue)? "" : ErorrMessage.EMAIL )
     } 
     if (name == "display_name") {
@@ -42,10 +42,10 @@ const chekValid = (name: string, checValue: string): string => {
 }
   
 export const checkInputValue = (event:HTMLInputElement): boolean => {
-    const parent = event.parentElement;
-    const error = parent?.querySelector(".error-message");
-    error!.textContent = chekValid( event.name, event.value );
-    return (error!.textContent)? false : true
+    const parent = event.parentElement as HTMLElement;
+    const error = parent.querySelector(".error-message");
+    (error as HTMLElement ).textContent = chekValid( event.name, event.value );
+    return ((error as HTMLElement ).textContent)? false : true
 
 };
 
@@ -73,14 +73,14 @@ export const submit = (event: Event): void =>{
 
 export const submitMess = (event: SubmitEvent): void =>{
     event.preventDefault();
-    const ar = (event.target as HTMLElement ).getElementsByTagName("input")
+    const inputForm = (event.target as HTMLElement ).getElementsByTagName("input")
     const data: Record<string, string> = {};
     const error = document.querySelector(".error-message");
-    if (chekValid( ar[0].name, ar[0].value )) {
-        error!.textContent = chekValid( ar[0].name, ar[0].value )
+    if (chekValid( inputForm[0].name, inputForm[0].value )) {
+        (error as HTMLElement).textContent = chekValid( inputForm[0].name, inputForm[0].value )
     } else {
-        error!.textContent = "";
-        data[ar[0].name] = ar[0].value;
+        (error as HTMLElement).textContent = "";
+        data[inputForm[0].name] = inputForm[0].value;
         console.log(data); 
         (event.target as HTMLFormElement ).reset()
     }

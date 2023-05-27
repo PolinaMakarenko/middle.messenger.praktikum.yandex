@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/no-this-alias */
+/* eslint-disable @typescript-eslint/no-empty-function */
 import EventBus from "./EventBus";
 import { nanoid } from "nanoid";
 
@@ -23,7 +27,7 @@ class Block {
   * @returns {void}
   * */
 
-  constructor( childrenAndProps: any = {}): void {
+  constructor( childrenAndProps: any = {}) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(childrenAndProps);
