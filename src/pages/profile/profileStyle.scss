@@ -1,4 +1,4 @@
-@import '../styles/index.scss';
+@import "../styles/index.scss";
 
 body {
     @extend %bodyMain
@@ -6,6 +6,7 @@ body {
 
 .container {
     @include containerBasic(700px, 615px);
+    
     padding: 2rem;
 }
 
@@ -60,7 +61,7 @@ body {
     color: $colorViolet;
 }
 
-form {
+form.container__info_about-user{
     margin-top: 5rem;
     display: flex;
     flex-direction: column;

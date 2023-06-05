@@ -1,3 +1,3 @@
 module.exports = {
-    partials: './src/pages'
+    partials: "./src/pages"
 }

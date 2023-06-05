@@ -1,7 +1,7 @@
-@import '../styles/index.scss';
+@import "../styles/index.scss";
 
 body {
-    @extend %bodyMain
+    @extend %bodyMain;
 }
 
 .container__form_login {

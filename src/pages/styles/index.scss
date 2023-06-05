@@ -1,5 +1,5 @@
-@import './color.scss';
-@import './main.scss';
+@import "./color.scss";
+@import "./main.scss";
 
 *,
 *::before,
@@ -10,6 +10,7 @@
 ul[class],
 ol[class] {
   padding: 0;
+  margin: 0;
 }
 
 body,
@@ -18,8 +19,6 @@ h2,
 h3,
 h4,
 p,
-ul[class],
-ol[class],
 li,
 figure,
 figcaption,
@@ -32,7 +31,7 @@ dd {
 body {
   min-height: 100vh;
   scroll-behavior: smooth;
-  text-rendering: optimizeSpeed;
+  text-rendering: optimizespeed;
   line-height: 1.5;
 }
 
