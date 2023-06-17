@@ -4,7 +4,10 @@ import template from "./profileChangePassword.hbs";
 import "../profileStyle.scss";
 import Buttons from "../../../components/button/button";
 import Input from "../../../components/input/input";
-import { focusin, focusout, submit } from "../../../core/Validation";
+import { checkInputValue, focusin, focusout } from "../../../core/Validation";
+import { withStore } from "../../../core/Store";
+import UserController from "../../../controlers/UserController";
+import { PasswordData } from "../../../api/types";
 
 
 interface ProfileChangePasswordProps {
@@ -67,7 +70,7 @@ export default class ProfileChangePassword extends Block {
         label: "Save",
     });
     this.children.linkProfile = new Link({
-      href: "/",
+      href: "/profile",
       class: "link-enter",
       label: "Go to Profil",
     });
@@ -75,4 +78,24 @@ export default class ProfileChangePassword extends Block {
   render() {
     return this.compile(template, this.props);
   }
+}
+
+
+const withUser = withStore((state) => ({ ...state.user }));
+
+export const ProfileChangePasswUser = withUser(ProfileChangePassword);
+
+
+export const submit = (event: Event): void =>{
+  event.preventDefault();
+  const allFormInputs = document.querySelectorAll("input");
+  const data = {};
+  const finishInputs = (Array.from(allFormInputs)).filter(el => el.name != "newPassword2")
+  finishInputs.forEach((input: HTMLInputElement) => {
+    (checkInputValue(input)) ? data[input.name] = input.value : ""    
+  });
+  (finishInputs.length == Object.keys(data).length) 
+  ? ( console.log(data), 
+  UserController.chahgePassword(data as PasswordData)): ""
+//  (event.target as HTMLFormElement ).reset()
 }
