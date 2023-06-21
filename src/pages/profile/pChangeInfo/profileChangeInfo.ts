@@ -21,7 +21,7 @@ interface EditProfilePageProps extends UserDTO {
 }
 
 export default class ProfileChangeInfo extends Block {
-  constructor(props: UserDTO) {
+  constructor(props?: any) {
     super({ ...props,
       events: { submit },
   });
@@ -126,8 +126,8 @@ export default class ProfileChangeInfo extends Block {
   }
 
   protected componentDidUpdate(
-    _oldProps: EditProfilePageProps,
-    _newProps: EditProfilePageProps,
+    _oldProps: any,
+    _newProps: any,
   ): boolean {
    
     Object.keys(_newProps).forEach((key) => {
@@ -150,7 +150,7 @@ export default class ProfileChangeInfo extends Block {
   }
 }
 
-const withUser = withStore((state) => ({ ...state.user }));
+const withUser = withStore((state) => ({ ...state.user.data }));
 
 export const ProfileChangeInfoUser = withUser(ProfileChangeInfo);
 

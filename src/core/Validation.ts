@@ -8,7 +8,7 @@ enum ErorrMessage {
     DISPNAME = "Первая буква заглавная, без пробелов и цифр",
 }
 
-const chekValid = (name: string, checValue: string): string => {
+ export const chekValid = (name: string, checValue: string): string => {
     if (name == "login") {
     const regExp = /^(?!^\d+)[a-zA-z0-9-_]{3,20}$/;
     return (regExp.test(checValue)? "" : ErorrMessage.LOGIN )
@@ -21,7 +21,7 @@ const chekValid = (name: string, checValue: string): string => {
         const regExp = /^[+-d]?\d{10,15}$/;
         return (regExp.test(checValue)? "" : ErorrMessage.PHONE )
     }
-    if (name == "message") {
+    if (name == "message" || name == "title") {
         const regExp = /^.+$/;
         return (regExp.test(checValue)? "" : ErorrMessage.MESSAGE )
     }

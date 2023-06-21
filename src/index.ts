@@ -8,6 +8,7 @@ import ProfileUser from "./pages/profile/profile/profile";
 import ProfileChangeInfoUser from "./pages/profile/pChangeInfo/profileChangeInfo";
 import { ProfileChangePasswUser } from "./pages/profile/pChangePassword/profileChangePassword";
 import ProfileChangeFoto from "./pages/profile/pChangeFoto/pChangeFoto";
+import { ChatsTestStroe } from "./pages/chat3/chats3";
 
 // window.addEventListener("DOMContentLoaded", () => {
     // const page404 = new containerError({erorrNumber: "404",erorrText:"Oh no...We lost this page", img:img404  });
@@ -119,12 +120,11 @@ export const Routes = {
   ChangeAvatar: "/changeAvatar",
   Messenger: "/messenger",
   Error400: "/404",
-  Error500: "/500"
+  Error500: "/500",
+  testChat: "/newChat"
 }
 
 window.addEventListener("DOMContentLoaded", async () => {
-  // const page404 = new ContainerError({erorrNumber: "404",erorrText:"Oh no...We lost this page", img:img404  });
-
   Router
     .use(Routes.Login, FormLogin)
     .use(Routes.Registr, FormReg)
@@ -135,6 +135,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     .use(Routes.Messenger, Chats)
     .use(Routes.Error400,ContainerError)
     .use(Routes.Error500,ContainerError)
+    .use(Routes.testChat, ChatsTestStroe)
 
   let isProtectedRoute = true
 

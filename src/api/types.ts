@@ -19,11 +19,15 @@ export type PasswordData = {
 }
 
 
-export type Chat = {
+export type ChatDTO = {
     id: number,
     title: string,
     avatar: string | null,
     unread_count: number,
-    last_message: Message | null,
+    last_message: {
+        user: UserDTO,
+        time: string;
+        content: string;
+      }
     created_by: number,
   };

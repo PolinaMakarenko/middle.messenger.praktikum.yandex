@@ -18,7 +18,7 @@ export class UserController {
     try {
       const updatedUser = await this.api.changeInfo(data)
       store.set('user.data', updatedUser)
-
+      Router.go("/profile")
     } catch (e) {
       store.set('user.error', (e as Error).message)
     } finally {
@@ -59,11 +59,10 @@ export class UserController {
 
   }
 
-//   async searchUser(login: string): Promise<UserDTO[]> {
-//     const response = await this.api.searchUser(login)
-
-//     return response
-//   }
+  async searchUser(data: {login: string}): Promise<UserDTO[]> {
+    const response = await this.api.searchUser(data)
+    return response
+  }
 }
 
 export default new UserController()

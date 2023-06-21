@@ -18,8 +18,8 @@ export class UsereAPI extends BaseAPI {
     return this.http.put<UserDTO>('/profile/avatar', file)
   }
 
-  searchUser(login: string): Promise<UserDTO[]> {
-    return this.http.post('/search', { login })
+  searchUser(data: {login: string}): Promise<UserDTO[]> {
+    return this.http.post('/search', data)
   }
 
   read = undefined

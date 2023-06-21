@@ -3,8 +3,10 @@ import FormMess from "../../components/formMess/formMess";
 import Link from "../../components/link/link";
 import Block from "../../core/Block";
 import { submitMess } from "../../core/Validation";
+import ChatsController from  "../../controlers/ChatController";
 import template from "./chats.hbs";
 import "./chatsStyle.scss";
+
 
 type allChatsProp = {
   label: string;
@@ -34,14 +36,16 @@ export default class Chats extends Block {
       submit: submitMess
 
     },
+
     
     });
   
-    // this.children.link = new Link({
-    //     href: "/",
-    //     class: "link-enter",
-    //     label: "Go to Profil",
-    // });
+    this.children.link = new Link({
+        href: "/profile",
+        class: "link-enter",
+        label: "Go to Profil",
+    });
+
   }
 
   protected render(): DocumentFragment {

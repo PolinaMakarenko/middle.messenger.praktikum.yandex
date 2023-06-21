@@ -1,7 +1,7 @@
 // import { Routes } from ".."
 import API, { AuthAPI, SigninData, SignupData } from "../api/AuthAPI"
 import Router from "../core/Rourer"
-import {store} from "../core/Store"
+import store from "../core/Store"
 
 export class AuthController {
   private readonly api: AuthAPI
