@@ -3,10 +3,10 @@ import Router from "../core/Rourer"
 
 
 export function withRouter(Component: typeof Block) {
-    type Props = typeof Component extends typeof Block <infer P> ? P : any;
+    // type Props = typeof Component extends typeof Block <infer P> ? P : any;
   
     return class WithRouter extends Component {
-      constructor(props: Props & PropsWithRouter) {
+      constructor(props: any & PropsWithRouter) {
         super({ ...props, router: Router });
       }
     }

@@ -10,9 +10,11 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "sourceMap": true,
+    "strictPropertyInitialization": false,    
+    "forceConsistentCasingInFileNames": true, 
     "strictNullChecks": true
   },
-  "lib": ["ESNext", "DOM"]
+  "lib": ["ESNext", "DOM" ]
 }
 
 

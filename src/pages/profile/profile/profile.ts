@@ -15,19 +15,31 @@ interface ProfileProps {
     surname?: string;
     phone?: string;
     chatName?: string;
+    first_name?: string;
+    second_name?: string;
+    display_name?: string
+
   }
 
 export default class Profile extends Block {
-  constructor(props?: ProfileProps) {
-    super({ ...props });
-    // console.log(this.props)
+  // constructor(props: any) {
+  //   // super({ 
+  //   //     email: props?.email,
+  //   //   login: props?.login, 
+  //   //   name: props?.first_name, 
+  //   //   surname: props?.second_name ,
+  //   //   phone: props?.phone,
+  //   //   chatName: props?.display_name,
+  //   //  });
+  //   // console.log(this.props)
 
-  }
+  // }
   // console.log(this.props)
 
   // store.on(fg)
 
   init() {
+    //проба
     const { data } = store.getState().user;
     // console.log(this.props)
     // console.log(checAvatar)
@@ -78,14 +90,14 @@ export default class Profile extends Block {
         }
     });
   }
-  render() {
+  render(): DocumentFragment {
     return this.compile(template, this.props);
   }
 }
 
-const withUser = withStore((state) => {
+const withUser = withStore((state:any) => {
   // console.log(state.user.data)
-  return { ...state.user }
+  return { ...state.user.data }
 })
 // console.log(withUser)
 
