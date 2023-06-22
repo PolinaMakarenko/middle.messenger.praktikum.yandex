@@ -57,8 +57,10 @@ const initialState: StateType = {
     isLoading: false,
   },
   deleteUser: {
-    isLoading: false
-  }
+      isLoading: false
+  },
+
+
 };
 
 

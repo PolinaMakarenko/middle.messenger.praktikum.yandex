@@ -4,7 +4,7 @@ import ChatsController from "../../controlers/ChatController"
 import { withStore } from "../../core/Store"
 import template from "./deleteUser.hbs"
 import UserList from "./userList/userList"
-import UserListOne from "./userOneDelite/userListOne"
+import UserListOne from "./userListOne/userListOne"
 
 class DeleteUser extends Block {
   constructor(props: any) {
@@ -23,11 +23,13 @@ class DeleteUser extends Block {
   }
   
  componentDidUpdate(_oldProps: any, newProps:any) {
-    this.children.centerElement = this.createList(newProps)
+    this.children.listUsers = this.createList(newProps)
     return true
   }
   
   private createList(props: any) {
+    // console.log("пытаюсь обновиться")
+    // console.log(props.users)
     return new UserList({
       users: props.users && props.users.map((item: any) => new UserListOne({
         text: item.login,
@@ -52,7 +54,7 @@ class DeleteUser extends Block {
   const withModal = withStore((state) => {
       return {
         deleteUserModal: state.deleteUserModal,
-        ...state.deleteUser,
+        ...state.modals.deleteUser,
         userId: state.user.data?.id,
         chatId: state.selectedId,
         users: state.chats.users
