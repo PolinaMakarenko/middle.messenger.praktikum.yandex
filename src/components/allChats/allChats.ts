@@ -8,14 +8,10 @@ import ChatsList from "../chatsList/chatsList";
 import { withStore } from "../../core/Store";
 import Buttons from "../button/button";
 import  Router  from "../../core/Rourer";
-import { withRouter } from "../../hocs/withRouter";
 import AuthController from "../../controlers/AuthController";
 
 
 export default class AllChats extends Block {
-  // constructor(props?: any) {
-  //   super(props);
-  // }
 
   init() {
   this.children.inputSerch = new Input2({
@@ -29,10 +25,7 @@ export default class AllChats extends Block {
 
   this.getChats();
 
-  // this.children.listallChats =  new ChatsList({
-  //   title: "POLI",
-  //   lable: "MM",
-  // })
+
   this.children.buttonLogout = new Buttons({
       // class: "login-form__submit",
       label: "LOGOUT",
@@ -49,8 +42,6 @@ export default class AllChats extends Block {
     label: "Create Chat",
     events: {
       click: () => {
-        // store.set(isAc)
-        // console.log("HI pollim")
         ChatsController.createChatModal(true)
       }
     },
@@ -66,44 +57,28 @@ export default class AllChats extends Block {
   }
 
   public async getChats(): Promise<void> {
-    // authController.getUser();
     ChatsController.getChats();
   }
   protected componentDidUpdate(_oldProps: any, newProps: any): boolean {
-    // console.log("обновляйся падла")
     this.children.listallChats = this.listChatsSet(newProps)
-    // ChatsController.getChats()
     return true
   }
 
   private listChatsSet(props: {chats: any}) {
-    // console.log("mygh")
-    // const mg = props.chats[0]
-    // console.log("обновляйся падла")
-    // console.log(props)
-    // return new ChatsList({
-    //   title: "POLI",
-    //   lable: "MM",
-    // })
+
     return props.chats.map((item: any) => new ChatsList({
       title: item.title,
       lable: item.title[0].toUpperCase(),
-      // avatar: item.avatar,
       lastMess: item.last_message ? item.last_message.content : null,
       userSendlas: item.last_message ? item.last_message.user.first_name : null,
       time: item.last_message ? timeFunc(item.last_message.time) : null,
       events: {
         click: () => {
-          // console.log("HI")
-          // console.log(item)
           ChatsController.selectChat(item.id)
         }
       },
     }))
   }
-
-
-
   protected render(): DocumentFragment {
     return this.compile(template, this.props);
   }

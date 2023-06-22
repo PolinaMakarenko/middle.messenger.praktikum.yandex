@@ -1,20 +1,11 @@
   <div class="chat">
     {{#if selectedId}}
-        {{!-- {{{addUserModal}}} --}}
         {{{ chatInfoBlock }}}
         {{{chatMessageBlock}}}
-        {{!-- <div class="chat_message">
-          <div class="chat_message_list_user"> HI</div>
-          <div class="chat_message_list_addresser"> Hello</div>
-          <div class="chat_message_list_user"> !!</div>
-          <div class="chat_message_list_addresser"> Mew</div>
-          <div class="chat_message_list_addresser"> Текст Текст Текст Текст</div>
-        </div> --}}
         <div class="chat_new-message_form">
           {{{newMess}}}
         </div>
          {{else}}
              <div class="chat_message_start">Select or create a chat</div>
       {{/if}}
-          {{!-- {{{addUserModal}}} --}}
   </div>

@@ -1,7 +1,7 @@
-import Block from '../../core/Block'
+import Block from '../../../core/Block'
 import template from './userItem.hbs'
 
-interface IUserItemProps {
+interface userProps {
   text: string
   userId: string
   events: {
@@ -9,10 +9,10 @@ interface IUserItemProps {
   }
 }
 
-class UserItem extends Block<IUserItemProps> {
+class UserListOne extends Block<userProps> {
   render() {
     return this.compile(template, this.props)
   }
 }
 
-export default UserItem
+export default UserListOne

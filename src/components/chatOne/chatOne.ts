@@ -13,18 +13,12 @@ import ChatController from "../../controlers/ChatController";
 import Router  from "../../core/Rourer";
 
 
-
-
 export default class ChatsOne extends Block {
   constructor(props?: any) {
     super(props);
-    console.log("My test")
-    console.log(props)
   }
 
   init() {
-    // let myBloc = document.getElementById("chat_message")
-    // console.log(myBloc)
     this.children.chatMessageBlock = new ChatMessagesSrore({})
     this.children.chatInfoBlock = this.updateChatInfo(this.props)
     this.children.newMess = new FormMess({
@@ -59,37 +53,17 @@ export default class ChatsOne extends Block {
     });
   }
 
-  componentDidUpdate(oldProps?: any, newProps?: any) {
-    this.children.chatInfoBlock = this.updateChatInfo(newProps);
-    // (this.children.addUserModal as Block).setProps({newProps})
-    
+  componentDidUpdate(_oldProps?: any, newProps?: any) {
+    this.children.chatInfoBlock = this.updateChatInfo(newProps);    
     return true
   }
-  
-
-  // private updateModalInfo(props: any) {
-  //   // return new ModalsAddUser({chatId: props.selectedId})
-  // }
 
   private updateChatInfo(props: any) {
-    console.log('Я работаю')
-    console.log(props)
-    // this.children.addUserModal = new ModalsAddUser({})
     return new ChatInfo({
-      // imageUrl: props.selectedId
-      //   ? props.list.data.find(item => item.id === props.selectedId)?.avatar
-      //   : null,
       name: props.selectedId
         ? props.list.data.find(item => item.id === props.selectedId)?.title
         : null,
       chatId: props.selectedId,
-      // settings: {
-      //   events: {
-      //     click: () => {
-      //       ModalsController.editChatsToggler(!this.props.show)
-      //     }
-      //   }
-      // }
     })
   }
 

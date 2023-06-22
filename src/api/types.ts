@@ -18,6 +18,7 @@ export type PasswordData = {
     newPassword: string;
 }
 
+  
 
 export type ChatDTO = {
     id: number,
@@ -28,6 +29,14 @@ export type ChatDTO = {
         user: UserDTO,
         time: string;
         content: string;
-      }
-    created_by: number,
-  };
+        }
+    // created_by: number,
+};
+
+export type MessageChat = {
+    chat_id: number;
+    time: string;
+    type: string;
+    user_id: number;
+    content: string;
+}
