@@ -21,6 +21,9 @@ class ChatMessage extends Block {
   }
 
   private oneMessages(props: InterfacePropsWithStore) {
+    console.log("ТУТ")
+    console.log(props)
+
     return props.messages.map((item) => new oneMessage({
       text: item.content,
       time: getTime(item.time),

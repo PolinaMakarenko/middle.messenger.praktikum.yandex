@@ -7,6 +7,7 @@ interface IButtonProps {
     lable?: string
     title?: string
     time?: string | null
+    userSendlas?: string
     // total?: TotalMessProps
     lastMess?: string
     events?: {

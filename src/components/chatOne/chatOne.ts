@@ -69,8 +69,8 @@ export default class ChatsOne extends Block {
   // }
 
   private updateChatInfo(props: any) {
-    // console.log('Я работаю')
-    // console.log(props)
+    console.log('Я работаю')
+    console.log(props)
     // this.children.addUserModal = new ModalsAddUser({})
     return new ChatInfo({
       // imageUrl: props.selectedId

@@ -7,7 +7,6 @@ interface IUserItemProps {
   events: {
     click: () => void
   }
-  selected?: boolean
 }
 
 class UserItem extends Block<IUserItemProps> {

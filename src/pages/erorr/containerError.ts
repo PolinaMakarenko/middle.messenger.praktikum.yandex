@@ -5,9 +5,6 @@ import Link from "../../components/link/link";
 import "./erorrStyle.scss";
 import Erorr404 from "../../../static/404Erorr.png";
 import Erorr500 from "../../../static/500Erorr.png";
-import Avatar from "../../components/avatar/avatar";
-
-// type glf = "../../../static/404Erorr.png"
 
 
 export default class containerError extends Block {
@@ -18,7 +15,7 @@ export default class containerError extends Block {
 
   init() {
     this.children.link = new Link({
-      // href: "/",
+      href: "/messenger",
       class: "link-enter",
       label: "Go to chats",
     });

@@ -1,24 +1,30 @@
 import Block from "../../core/Block";
+import  Router  from "../../core/Rourer";
 import { PropsWithRouter, withRouter } from "../../hocs/withRouter";
 import template from "./link.hbs";
 
-interface LinkProps {
+interface LinkProps extends PropsWithRouter   {
   // to: string
-  href?: string
-  class: string;
-  label: string;
+  href: string
+  class?: string;
+  label?: string;
+  // events: {
+  //   click: () => void
+  // }
   events?: Record<string, (...args: any) => void>;
 }
 
- class Link extends Block {
+ class Link extends Block<LinkProps>{
   constructor(props: LinkProps) {
     super({
-      ...props
+      ...props,
+      // events: {
+      //   click: () => this.navigate()
+      // }
     });
   }
-
   // navigate() {
-  //   this.props.router.go(this.props.to);
+  //   Router.go(this.props.href)
   // }
 
   render() {
@@ -27,3 +33,6 @@ interface LinkProps {
 }
 
 export default Link;
+
+
+// export const Link = withRouter(LinkR)

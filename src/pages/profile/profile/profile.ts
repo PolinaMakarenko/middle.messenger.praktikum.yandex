@@ -81,7 +81,7 @@ export default class Profile extends Block {
         label: "Change password",
     });
     this.children.linkLogout = new Link({
-        href: "/",
+        // href: "/",
         class: "link-enter",
         label: "LOGOUT",
         events: {
