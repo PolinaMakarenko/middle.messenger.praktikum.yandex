@@ -1,7 +1,7 @@
-import BaseAPI from "./BaseAPI"
+import BaseAPI from "./ABaseAPI"
 import { PasswordData, UserDTO } from "./types"
 
-export class UsereAPI extends BaseAPI {
+export class UserAPI extends BaseAPI {
   constructor() {
     super("/user")
   }
@@ -28,4 +28,4 @@ export class UsereAPI extends BaseAPI {
   delete = undefined
 }
 
-export default new UsereAPI()
+export default new UserAPI()

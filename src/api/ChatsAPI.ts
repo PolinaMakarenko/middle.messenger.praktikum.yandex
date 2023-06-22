@@ -1,4 +1,4 @@
-import BaseAPI from "./BaseAPI"
+import BaseAPI from "./ABaseAPI"
 import { ChatDTO, UserDTO } from "./types"
 
 export class ChatsAPI extends BaseAPI {
