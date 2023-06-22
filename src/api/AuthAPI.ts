@@ -1,4 +1,3 @@
-// import { IUser } from '../types/IUser'
 import BaseAPI from "./BaseAPI"
 
 export interface SigninData {

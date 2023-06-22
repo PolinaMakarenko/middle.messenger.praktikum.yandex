@@ -48,6 +48,7 @@ class ChatsController {
 
   addUserModal(isOpen: boolean){
     store.set("addUserModal", isOpen)
+
   }
 
   async createChat(data: {title: string}) {
@@ -73,6 +74,8 @@ class ChatsController {
 
   selectChat(id: number | undefined) {
     store.set("selectedId", id)
+    // await MessagesController.fetchOldMessages(id)
+
   }
 
   addUserSerError(error: string) {

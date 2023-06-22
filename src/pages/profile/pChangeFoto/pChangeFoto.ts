@@ -45,7 +45,7 @@ export default class ProfileChangeFoto extends Block {
 
 const submit = (event: Event): void =>{
   event.preventDefault();
-  const allFormInputs = document.querySelector("input");
+  const allFormInputs  = document.querySelector("input");
   UserController.changeAvatar(allFormInputs.files[0])
   // const target = event.target
   // const gt = typeof(allFormInputs.files[0])
