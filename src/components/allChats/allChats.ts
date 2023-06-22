@@ -7,6 +7,7 @@ import timeFunc from "./timeHelper"
 import ChatsList from "../chatsList/chatsList";
 import { withStore } from "../../core/Store";
 import Buttons from "../button/button";
+import { Router } from "../../core/Rourer";
 
 
 export default class AllChats extends Block {
@@ -31,7 +32,7 @@ export default class AllChats extends Block {
   //   lable: "MM",
   // })
 
-  this.children.buttonSerch = new Buttons({
+  this.children.buttonCreate = new Buttons({
     // class?: string;
     label: "Create Chat",
     events: {
@@ -48,6 +49,11 @@ export default class AllChats extends Block {
         href: "/profile",
         class: "link-enter",
         label: "Go to Profil",
+        events: {
+          click: () => {
+            Router.go(this.props.href)
+          }
+        }
     });
   }
 
@@ -65,8 +71,8 @@ export default class AllChats extends Block {
   private listChatsSet(props: {chats: any}) {
     // console.log("mygh")
     // const mg = props.chats[0]
-    console.log("обновляйся падла")
-    console.log(props)
+    // console.log("обновляйся падла")
+    // console.log(props)
     // return new ChatsList({
     //   title: "POLI",
     //   lable: "MM",
@@ -76,6 +82,7 @@ export default class AllChats extends Block {
       lable: item.title[0].toUpperCase(),
       // avatar: item.avatar,
       lastMess: item.last_message ? item.last_message.content : null,
+      userSendlas: item.last_message ? item.last_message.user.first_name : null,
       time: item.last_message ? timeFunc(item.last_message.time) : null,
       events: {
         click: () => {
