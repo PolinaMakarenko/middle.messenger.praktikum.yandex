@@ -6,22 +6,13 @@ import { OneChatSrore } from "../../components/chatOne/chatOne";
 import { ModalsCreateChat } from "../../components/createChat/createChat";
 import { withStore } from "../../core/Store";
 import { ModalsAddUser } from "../../components/addUser/addUser";
+import { ModalDeleteUser } from "../../components/deleteUser/deleteUser";
 
 type allChatsProp = {
   label: string;
   lastMess: string;
 };
 
-// const allChats = [
-//         {label: "Ivan", lastMess: "Привет"},
-//         {label: "vitek", lastMess: "Сообщение"},
-//         {label: "Nik", lastMess: "Письмо"},
-//         {label: "olga44", lastMess: "Новость"},
-// ]
-
-// interface AllPagesProps {
-//     allChats: allChatsProp[];
-// }
 
 export default class ChatsTest extends Block {
   // constructor(props: any) {
@@ -32,8 +23,7 @@ export default class ChatsTest extends Block {
     this.children.allComChats = new AllChatsStore({});
     this.children.modalsCreate = new ModalsCreateChat({})
     this.children.modalnewUser = new ModalsAddUser({})
-    
-
+    this.children.modalDeleteUser = new ModalDeleteUser({})
     this.children.oneComChat = new OneChatSrore({});
   }
   componentDidUpdate(oldProps?: any, newProps?: any) {

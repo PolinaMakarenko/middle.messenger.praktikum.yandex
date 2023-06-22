@@ -18,8 +18,7 @@ class ChatsController {
 
     try {
       const chatsList = await this.api.read()
-      // console.log()
-
+  
       chatsList.map(async (chat) => {
         const token = await this.getToken(chat.id)
         // console.log(token)
@@ -51,6 +50,10 @@ class ChatsController {
 
   }
 
+  deleteUserModal(isOpen:boolean){
+    store.set("deleteUserModal", isOpen)
+  }
+
   async createChat(data: {title: string}) {
     store.set("createNewChat.isLoading", true)
 
@@ -77,6 +80,9 @@ class ChatsController {
     // await MessagesController.fetchOldMessages(id)
 
   }
+  deleteUserSelect(id: number) {
+    store.set('modals.deleteUser.selectedUserId', id)
+  }
 
   addUserSerError(error: string) {
     // console.log("установка")
@@ -99,11 +105,15 @@ class ChatsController {
   }
   
   async getUsers(id: number): Promise<UserDTO[]> {
+    // // console.log("N")
+    // const my = store.getState()
+    // const id = my.selectedId ? my.selectedId : 0
     return this.api.getUsers(id)
   }
 
   async deleteUser(id: number, users: number[]) {
     store.set("modals.deleteUser.isLoading", true)
+
 
     try {
       await this.api.deleteUsers(id, users)
@@ -111,6 +121,8 @@ class ChatsController {
       store.set("modals.deleteUser.error", (error as Error).message)
     } finally {
       store.set("modals.deleteUser.isLoading", false)
+      this.deleteUserModal(false)
+      // this.getChats()
     }
 
   }
