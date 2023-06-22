@@ -1,4 +1,4 @@
-import BaseAPI from "./BaseAPI"
+import BaseAPI from "./ABaseApI"
 import { PasswordData, UserDTO } from "./types"
 
 export class UserAPI extends BaseAPI {
