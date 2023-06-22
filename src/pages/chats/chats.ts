@@ -37,11 +37,11 @@ export default class Chats extends Block {
     
     });
   
-    this.children.link = new Link({
-        href: "/",
-        class: "link-enter",
-        label: "Go to Profil",
-    });
+    // this.children.link = new Link({
+    //     href: "/",
+    //     class: "link-enter",
+    //     label: "Go to Profil",
+    // });
   }
 
   protected render(): DocumentFragment {

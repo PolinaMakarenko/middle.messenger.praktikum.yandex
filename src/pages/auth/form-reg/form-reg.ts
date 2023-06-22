@@ -4,7 +4,10 @@ import Input from "../../../components/input/input";
 import Buttons from "../../../components/button/button";
 import Link from "../../../components/link/link";
 import "../authStyle.scss";
-import { focusin, focusout, submit } from "../../../core/Validation";
+import Router  from "../../../core/Rourer";
+import { checkInputValue, focusin, focusout} from "../../../core/Validation";
+import AuthController from "../../../controlers/AuthController";
+import { SignupData } from "../../../api/AuthAPI";
 
 interface FormRegProps {
   title?: string;
@@ -51,7 +54,7 @@ export default class FormReg extends Block {
         focusout,
       },
     });
-    this.children.Surname = new Input({
+    this.children.inputSurname = new Input({
       class: "reg-form__second_name-input",
       name: "second_name",
       label:"Surname:",
@@ -83,11 +86,20 @@ export default class FormReg extends Block {
     this.children.buttonForm = new Buttons({
         class: "login-form__submit button",
         label: "Create profile",
+        // events: {
+        //   focusin,
+        //   focusout,
+        // },
     });
     this.children.link = new Link({
-        href: "/login",
+        href: "/",
+        // class: "link-enter",
+        // label: "Sign in",
+        // to: "/",
         class: "link-enter",
         label: "Sign in",
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        // events: { click:  ()=> Router.go("/")}
     });
   }
   render() {
@@ -95,3 +107,17 @@ export default class FormReg extends Block {
   }
 }
 
+
+
+export const submit = (event: Event): void =>{
+  event.preventDefault();
+  const allFormInputs = document.querySelectorAll("input");
+  const data = {};
+  allFormInputs.forEach((input: HTMLInputElement) => {
+      (checkInputValue(input)) ? data[input.name] = input.value : ""
+  });
+  (allFormInputs.length == Object.keys(data).length) 
+  ? ( console.log(data), 
+  AuthController.signup(data as SignupData)): ""
+//  (event.target as HTMLFormElement ).reset()
+}

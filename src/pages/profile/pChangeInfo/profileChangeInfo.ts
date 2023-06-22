@@ -4,34 +4,50 @@ import template from "./profileChangeInfo.hbs";
 import "../profileStyle.scss";
 import Buttons from "../../../components/button/button";
 import Input from "../../../components/input/input";
-import { focusin, focusout,submit } from "../../../core/Validation";
+import { checkInputValue, focusin, focusout } from "../../../core/Validation";
+import { store, withStore } from "../../../core/Store";
+import { UserDTO } from "../../../api/types";
+import AuthController from "../../../controlers/AuthController";
+import UserController from "../../../controlers/UserController";
+import { SignupData } from "../../../api/AuthAPI";
 
-interface ProfileChangeInfoProps {
-  title?: string;
+// interface ProfileChangeInfoProps {
+//   title?: string;
+// }
+
+interface EditProfilePageProps extends UserDTO {
+  selector?: string;
+  events?: Record<string, (args: any) => void>;
 }
 
 export default class ProfileChangeInfo extends Block {
-  constructor(props?: ProfileChangeInfoProps) {
+  constructor(props: UserDTO) {
     super({ ...props,
       events: { submit },
   });
   }
 
   init() {
-    this.children.inputAvatar = new Input({
-      class: "container__info_about-user_info",
-      name: "avatar",
-      label:"Avatar:",
-      type: "file",
-      placeholder: "",
-    });
+    const { data } = store.getState().user;
+    console.log(this.props)
+
+    // this.children.inputAvatar = new Input({
+    //   class: "container__info_about-user_info",
+    //   name: "avatar",
+    //   label:"Avatar:",
+    //   type: "file",
+    //   placeholder: "",
+    // });
+
+
+
     this.children.inputEmail = new Input({
       class: "container__info_about-user_info",
       name: "email",
       label:"Email:",
       type: "email",
       placeholder: "",
-      inputValue: "1234@gmail.com",
+      inputValue: data?.email,
       events: {
         focusin,
         focusout,
@@ -43,7 +59,7 @@ export default class ProfileChangeInfo extends Block {
       label:"Login:",
       type: "text",
       placeholder: "",
-      inputValue: "Lala",
+      inputValue: data?.login,
       events: {
         focusin,
         focusout,
@@ -55,7 +71,7 @@ export default class ProfileChangeInfo extends Block {
       label:"Name:",
       type: "text",
       placeholder: "",
-      inputValue: "Igor",
+      inputValue: data?.first_name,
       events: {
         focusin,
         focusout,
@@ -67,7 +83,7 @@ export default class ProfileChangeInfo extends Block {
       label:"Surname:",
       type: "text",
       placeholder: "",
-      inputValue: "Petrov",
+      inputValue: data?.second_name,
       events: {
         focusin,
         focusout,
@@ -79,7 +95,7 @@ export default class ProfileChangeInfo extends Block {
       label:"Chat name:",
       type: "text",
       placeholder: "",
-      inputValue: "LALA",
+      inputValue: data?.display_name,
       events: {
         focusin,
         focusout,
@@ -91,7 +107,7 @@ export default class ProfileChangeInfo extends Block {
       label:"Phone:",
       type: "tel",
       placeholder: "",
-      inputValue: "+79098135633",
+      inputValue: data?.phone,
       events: {
         focusin,
         focusout,
@@ -108,8 +124,46 @@ export default class ProfileChangeInfo extends Block {
       label: "Go to Profil",
     });
   }
+
+  protected componentDidUpdate(
+    _oldProps: EditProfilePageProps,
+    _newProps: EditProfilePageProps,
+  ): boolean {
+   
+    Object.keys(_newProps).forEach((key) => {
+      if (this.children[key] instanceof Input) {
+        if (_newProps) {
+          (this.children[key] as Input).setProps({
+            value: _newProps[key as keyof UserDTO] as string,
+          });
+        }
+      }
+    });
+    return false;
+  }
+    
+
+ 
+
   render() {
     return this.compile(template, this.props);
   }
 }
 
+const withUser = withStore((state) => ({ ...state.user }));
+
+export const ProfileChangeInfoUser = withUser(ProfileChangeInfo);
+
+
+export const submit = (event: Event): void =>{
+  event.preventDefault();
+  const allFormInputs = document.querySelectorAll("input");
+  const data = {};
+  allFormInputs.forEach((input: HTMLInputElement) => {
+      (checkInputValue(input)) ? data[input.name] = input.value : ""
+  });
+  (allFormInputs.length == Object.keys(data).length) 
+  ? ( console.log(data), 
+  UserController.changeInfo(data as UserDTO)): ""
+//  (event.target as HTMLFormElement ).reset()
+}

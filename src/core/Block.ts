@@ -5,19 +5,28 @@
 import EventBus from "./EventBus";
 import { nanoid } from "nanoid";
 
-class Block {
+// export interface BlockClass<P> extends Function {
+//   new (props: P): Block<P>;
+//   componentName?: string;
+// }
+
+class Block <P extends Record<string, any> = any>  {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
     FLOW_CDU: "flow:component-did-update",
+    // FLOW_CWU: "flow:component-will-unmount",
     FLOW_RENDER: "flow:render",
   } as const;
 
   public id = nanoid(6);
-  protected props: Record<string, unknown>;
+  protected props: P;
+  // const path = window.location.pathname
+  public path = window.location.pathname
   protected children: Record<string, Block>;
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
+  protected refs: { [key: string]: HTMLElement } = {};
   private _meta: Record<string, unknown> | null = null;
  
   /** JSDoc
@@ -61,7 +70,7 @@ class Block {
     return { props, children };
   }
   private _addEvents() {
-    const { events = {} } = this.props as {
+    const { events = {} } = this.props as P &  {
       events: Record<string, () => void>;
     };
 
@@ -69,9 +78,32 @@ class Block {
       this._element?.addEventListener(eventName, events[eventName]);
     });
   }
+  // для отрисовки страниц 
+  // const path = window.location.pathname
+
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // public RoutePage(path) {
+    // const path = window.location.pathname
+  // }
+
+  /**
+   * Хелпер, который проверяет, находится ли элемент в DOM дереве
+   * И есть нет, триггерит событие COMPONENT_WILL_UNMOUNT
+   */
+  //  _checkInDom() {
+  //   const elementInDOM = document.body.contains(this._element);
+
+  //   if (elementInDOM) {
+  //     setTimeout(() => this._checkInDom(), 1000);
+  //     return;
+  //   }
+
+  //   this.eventBus().emit(Block.EVENTS.FLOW_CWU, this.props);
+  // }
 
   private  _removeEvents() {
-    const { events = {} } = this.props as {
+    const { events = {} } = this.props as P  & {
       events: Record<string, () => void>;
     };
 
@@ -88,6 +120,7 @@ class Block {
     eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+    // eventBus.on(Block.EVENTS.FLOW_CWU, this._componentWillUnmount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
@@ -107,6 +140,7 @@ class Block {
   protected init() {}
 
   private _componentDidMount() {
+    // this._checkInDom();
     this.componentDidMount();
   }
 
@@ -119,6 +153,18 @@ class Block {
       child.dispatchComponentDidMount()
     );
   }
+  
+
+  // _componentWillUnmount() {
+  //   this.eventBus().destroy();
+  //   this.componentWillUnmount();
+  // }
+
+  // public componentWillUnmount() {}
+
+  // protected componentDidUpdate(oldProps: any, newProps: any) {
+  //   return true;
+  // }
 
   private _componentDidUpdate(oldProps: any, newProps: any) {
     if (this.componentDidUpdate(oldProps, newProps)) {
@@ -187,7 +233,19 @@ class Block {
   }
 
   public getContent() {
-    return this.element;
+    // return this.element;
+          // Хак, чтобы вызвать CDM только после добавления в DOM
+          if (this.element?.parentNode?.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
+            setTimeout(() => {
+              if (
+                this.element?.parentNode?.nodeType !== Node.DOCUMENT_FRAGMENT_NODE
+              ) {
+                this.eventBus().emit(Block.EVENTS.FLOW_CDM);
+              }
+            }, 100);
+          }
+    
+          return this.element!;
   }
 
   private _makePropsProxy(props: any) {
@@ -217,13 +275,17 @@ class Block {
     return document.createElement(tagName);
   }
 
-  public show() {
-    this.getContent()!.style.display = "block";
-  }
+  // public show() {
+  //   this.getContent()!.style.display = "block";
+  // }
 
-  public hide() {
-    this.getContent()!.style.display = "none";
-  }
+  // public hide() {
+  //   this.getContent()!.style.display = "none";
+  // }
+
+  // public destroy() {
+  //   this._element!.remove();
+  // }
 }
 
 export default Block;
