@@ -9,10 +9,13 @@ type InterfacePropsWithStore = { messages: Message[], userId: number, selectedCh
 
 class ChatMessage extends Block {
   init() {
+    // const myBloc = document.getElementById("chat_message")
+    // myBloc!.scrollTop = myBloc!.scrollHeight;
+    // console.log(myBloc)
     this.children.messages = this.oneMessages(this.props)
   }
 
-  componentDidUpdate(oldProps: any, newProps: any) {
+  componentDidUpdate(_oldProps: any, newProps: any) {
     this.children.messages = this.oneMessages(newProps)
     return true
   }

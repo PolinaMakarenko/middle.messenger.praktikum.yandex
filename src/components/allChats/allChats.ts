@@ -5,20 +5,9 @@ import template from "./allChats.hbs";
 import ChatsController from "../../controlers/ChatController";
 import timeFunc from "./timeHelper"
 import ChatsList from "../chatsList/chatsList";
-import store, { withStore } from "../../core/Store";
+import { withStore } from "../../core/Store";
 import Buttons from "../button/button";
 
-// import timeFunc from "../../services/"
-// import "./chatsStyle.scss";
-
-type allChatsProp = {
-  label: string;
-  lastMess: string;
-};
-
-interface AllPagesProps {
-    allChats: allChatsProp[];
-}
 
 export default class AllChats extends Block {
   // constructor(props?: any) {
@@ -66,14 +55,17 @@ export default class AllChats extends Block {
     // authController.getUser();
     ChatsController.getChats();
   }
-  protected componentDidUpdate(_: any, newProps: any): boolean {
+  protected componentDidUpdate(_oldProps: any, newProps: any): boolean {
+    // console.log("обновляйся падла")
     this.children.listallChats = this.listChatsSet(newProps)
+    // ChatsController.getChats()
     return true
   }
 
   private listChatsSet(props: {chats: any}) {
     // console.log("mygh")
     // const mg = props.chats[0]
+    // console.log("обновляйся падла")
     // console.log(props)
     // return new ChatsList({
     //   title: "POLI",

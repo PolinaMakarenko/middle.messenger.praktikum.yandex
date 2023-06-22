@@ -1,6 +1,6 @@
 import ChatsController from "../../controlers/ChatController"
 import Block from "../../core/Block"
-import { IState, withStore } from "../../core/Store"
+import { withStore } from "../../core/Store"
 import Buttons from "../button/button"
 import template from "./addUser.hbs"
 import Input2 from "../input2/input2"

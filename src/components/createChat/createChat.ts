@@ -1,6 +1,6 @@
 import ChatController from "../../controlers/ChatController"
 import Block from "../../core/Block"
-import store, {  Store, StoreEvents, withStore } from "../../core/Store"
+import { withStore } from "../../core/Store"
 import Buttons from "../button/button"
 import FormNewChat from "../formNewChat/formNewChat"
 import {chekValid}  from "../../core/Validation";

@@ -23,15 +23,17 @@ interface ProfileProps {
 
 export default class Profile extends Block {
   // constructor(props: any) {
-  //   // super({ 
-  //   //     email: props?.email,
-  //   //   login: props?.login, 
-  //   //   name: props?.first_name, 
-  //   //   surname: props?.second_name ,
-  //   //   phone: props?.phone,
-  //   //   chatName: props?.display_name,
-  //   //  });
-  //   // console.log(this.props)
+    // super({...props})
+    //     email: props?.email,
+    //   login: props?.login, 
+    //   name: props?.first_name, 
+    //   surname: props?.second_name ,
+    //   phone: props?.phone,
+    //   chatName: props?.display_name,
+    //  });
+    // console.log(this.props)
+  // console.log(this.props)
+  // console.log("YOTTT")
 
   // }
   // console.log(this.props)
@@ -43,7 +45,7 @@ export default class Profile extends Block {
     const { data } = store.getState().user;
     // console.log(this.props)
     // console.log(checAvatar)
-    const checAvatar = (data?.avatar == undefined) ? constAvatar : 'https://ya-praktikum.tech/api/v2/resources'+data.avatar
+    const checAvatar = (data?.avatar == undefined) ? constAvatar : "https://ya-praktikum.tech/api/v2/resources"+data.avatar
     // console.log(checAvatar)
 
 
@@ -95,7 +97,7 @@ export default class Profile extends Block {
   }
 }
 
-const withUser = withStore((state:any) => {
+const withUser = withStore((state) => {
   // console.log(state.user.data)
   return { ...state.user.data }
 })

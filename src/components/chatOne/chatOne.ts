@@ -9,6 +9,7 @@ import ChatInfo from "../chatInfo/chatInfo";
 import MessagesController from "../../controlers/MessagerController"
 import { chekValid } from "../../core/Validation";
 import { ChatMessagesSrore } from "../chatMessage/chatMessage";
+import ChatController from "../../controlers/ChatController";
 
 
 
@@ -21,13 +22,15 @@ export default class ChatsOne extends Block {
   }
 
   init() {
+    // let myBloc = document.getElementById("chat_message")
+    // console.log(myBloc)
     this.children.chatMessageBlock = new ChatMessagesSrore({})
     this.children.chatInfoBlock = this.updateChatInfo(this.props)
     this.children.newMess = new FormMess({
       events: {
         // submit: (event)=> { event.preventDefault() 
         //   console.log(event.target.value)},
-        submit: (event: SubmitEvent): void =>{
+        submit: async(event: SubmitEvent) =>{
           event.preventDefault();
           const inputForm = (event.target as HTMLElement ).getElementsByTagName("input")
           // const data: Record<string, string> = {};
@@ -39,6 +42,7 @@ export default class ChatsOne extends Block {
               // data[inputForm[0].name] = inputForm[0].value;
               // console.log(inputForm[0].value); 
               MessagesController.sendMessage(this.props.selectedId, inputForm[0].value);
+              await ChatController.getChats();
               (event.target as HTMLFormElement ).reset()
           }
       }
