@@ -5,7 +5,7 @@
 
 Ссылка на макет [Figma](https://www.figma.com/file/njyjjPgy6kp0n79tn3Mn3M/PChat?node-id=0%3A1&t=qJ1olCzblo437EyZ-1)  
 Ссылка для просмотра деплой на [Netlify](https://pollimchat.netlify.app)    
-Ссылка на [PR](https://github.com/PolinaMakarenko/middle.messenger.praktikum.yandex/pull/3)
+Ссылка на [PR](https://github.com/PolinaMakarenko/middle.messenger.praktikum.yandex/pull/5)
 
 
 Подключен апи, в результате чего мы имеем возможность создать аккаунт пользователя, редактировать аккаунт. 
