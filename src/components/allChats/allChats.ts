@@ -65,8 +65,8 @@ export default class AllChats extends Block {
   private listChatsSet(props: {chats: any}) {
     // console.log("mygh")
     // const mg = props.chats[0]
-    // console.log("обновляйся падла")
-    // console.log(props)
+    console.log("обновляйся падла")
+    console.log(props)
     // return new ChatsList({
     //   title: "POLI",
     //   lable: "MM",

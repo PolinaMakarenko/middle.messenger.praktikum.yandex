@@ -3,6 +3,7 @@ import Buttons from "../button/button";
 import template from "./chatInfo.hbs";
 import ChatsController from "../../controlers/ChatController"
 import { ModalsAddUser } from "../addUser/addUser";
+import store from "../../core/Store";
 // import { ModalsAddUser } from "../addUser/addUser";
 
 
@@ -33,8 +34,9 @@ export default class ChatInfo extends Block {
             label: "+ User",
             events: {
               click: () => {
-                // store.set(isAc)
+                // store.set(selectedId: this.props.chatID)
                 // console.log("HI pollim +user")
+                
                 ChatsController.addUserModal(true)
               }
             },
@@ -45,9 +47,14 @@ export default class ChatInfo extends Block {
             label: "- User",
             events: {
               click: () => {
-                // store.set(isAc)
-                console.log("HI pollim delite")
-                // ChatsController.createChatModal(true)
+                // ChatsController.deleteUserModal(true)
+                store.set("selectedId", this.props.chatId)
+                ChatsController.getUsers(this.props.chatId).then((data) => {
+                            store.set('chats.users', data)
+                            console.log(this.props.users)
+                            console.log(data)
+                })
+                ChatsController.deleteUserModal(true)
               }
             },
         })
