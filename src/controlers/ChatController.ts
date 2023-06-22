@@ -86,7 +86,7 @@ class ChatsController {
     try {
       await this.api.addUsers(id, users)
     } catch (error) {
-      store.set("addChatUser.eerror", (error as Error).message)
+      store.set("addChatUser.error", (error as Error).message)
     } finally {
       store.set("addChatUser.isLoading", false)
     }

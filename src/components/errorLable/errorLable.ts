@@ -1,5 +1,5 @@
-import Block from '../../core/Block'
-import template from './errorLable.hbs'
+import Block from "../../core/Block"
+import template from "./errorLable.hbs"
 
 
 

@@ -10,11 +10,6 @@ import ErrorLable from "../errorLable/errorLable"
 
 
 class AddUser extends Block {
-  constructor(props:any) {
-    super({...props}) 
-    // console.log("chec props")
-    // console.log(props)
-  }
 
     init() {
 
@@ -45,14 +40,14 @@ class AddUser extends Block {
             text: ""
           })
     }
-    componentDidUpdate(_oldProps: any, _newProps: any) {
-        this.children.errorFind = this.newError({...this.props})
+    componentDidUpdate(_oldProps: any, newProps: any) {
+        this.children.errorFind = this.newError(newProps)
         return true
     }
 
     private newError(props: any) {
         return new ErrorLable({
-          text: props.addChatUser.error || ""
+          text: props.eror || ""
         })
       }
    
@@ -63,12 +58,10 @@ class AddUser extends Block {
 }
   
 const withModal = withStore((state) => {
-      return { ...state, chatId: state.selectedId }
+      return {...state, chatId: state.selectedId, eror: state.addChatUser.error }
 })
   
 export const ModalsAddUser = withModal(AddUser)
-
-  // console.log(ModalsCreateChat)
 
 
 
@@ -83,9 +76,9 @@ const  clickAddUser = async(event: Event)=>{
     
 
     const user = await UserController.searchUser(data)
-    // console.log(user)
+    console.log(user)
     if (user.length === 0) {
-        return ChatsController.addUserSerError("Пользователь не найден")
+        return ChatsController.addUserSerError("User not found")
       }
 
     ChatsController.addUserSerError("")

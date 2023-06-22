@@ -21,16 +21,15 @@ export default class ChatsTest extends Block {
     this.children.modalDeleteUser = new ModalDeleteUserNew({})
     this.children.oneComChat = new OneChatSrore({});
   }
-  componentDidUpdate(oldProps?: any, newProps?: any) {
-    this.children.modalnewUser = this.modalAgainnewUser(newProps);
-    return true
-  }
+  // componentDidUpdate(oldProps?: any, newProps?: any) {
+  //   this.children.modalnewUser = this.modalAgainnewUser(newProps);
+  //   return true
+  // }
 
-  private modalAgainnewUser(props: any) {
-    return new ModalsAddUser(props)
-  }
+  // private modalAgainnewUser(props: any) {
+  //   return new ModalsAddUser(props)
+  // }
   
-
   protected render(): DocumentFragment {
     return this.compile(template, this.props);
   }
