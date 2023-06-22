@@ -41,7 +41,7 @@ export default class ChatInfo extends Block {
           ChatsController.getUsers(this.props.chatId).then((data) => {
             store.set("chats.users", data)
               // console.log(this.props.users)
-              // console.log(data)
+              // console.log(store)
           })
           ChatsController.deleteUserModal(true)
         }
