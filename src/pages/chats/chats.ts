@@ -6,6 +6,7 @@ import { submitMess } from "../../core/Validation";
 import ChatsController from  "../../controlers/ChatController";
 import template from "./chats.hbs";
 import "./chatsStyle.scss";
+import Router from "../../core/Rourer";
 
 
 type allChatsProp = {
@@ -44,6 +45,7 @@ export default class Chats extends Block {
         href: "/profile",
         class: "link-enter",
         label: "Go to Profil",
+        events: { click:  ()=> Router.go("/profile")}
     });
 
   }

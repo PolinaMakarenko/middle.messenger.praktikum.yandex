@@ -8,6 +8,7 @@ import { checkInputValue, focusin, focusout } from "../../../core/Validation";
 import { withStore } from "../../../core/Store";
 import UserController from "../../../controlers/UserController";
 import { PasswordData } from "../../../api/types";
+import  Router  from "../../../core/Rourer";
 
 
 interface ProfileChangePasswordProps {
@@ -73,6 +74,7 @@ export default class ProfileChangePassword extends Block {
       href: "/profile",
       class: "link-enter",
       label: "Go to Profil",
+      events: { click:  ()=> Router.go("/profile")}
     });
   }
   render() {

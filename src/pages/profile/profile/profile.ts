@@ -6,6 +6,8 @@ import Avatar from "../../../components/avatar/avatar";
 import constAvatar from "../../../../static/Main.png"
 import { store, withStore } from "../../../core/Store";
 import AuthController from "../../../controlers/AuthController";
+import  Router  from "../../../core/Rourer";
+import Buttons from "../../../components/button/button";
 
 
 interface ProfileProps {
@@ -69,20 +71,28 @@ export default class Profile extends Block {
       href: "/changeInfo",
       class: "link-enter",
       label: "Change information",
+      events: { click:  ()=> Router.go("/changeInfo")}
     });
     this.children.linkavatar = new Link({
       href: "/changeAvatar",
       class: "link-enter",
       label: "Change avatar",
+      events: { click:  ()=> Router.go("/changeAvatar")}
     });
     this.children.linkPass = new Link({
         href: "/changePassword",
         class: "link-enter",
         label: "Change password",
+        events: { click:  ()=> Router.go("/changePassword")}
     });
-    this.children.linkLogout = new Link({
-        // href: "/",
-        class: "link-enter",
+    this.children.linkMess = new Link({
+      href: "/messenger",
+      class: "link-enter",
+      label: "To Messenger",
+      events: { click:  ()=> Router.go("/messenger")}
+  });
+    this.children.linkLogout = new Buttons({
+        class: "login-form__submit",
         label: "LOGOUT",
         events: {
           click: (event) => {

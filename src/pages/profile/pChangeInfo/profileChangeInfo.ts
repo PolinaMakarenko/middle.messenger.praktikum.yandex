@@ -10,6 +10,7 @@ import { UserDTO } from "../../../api/types";
 import AuthController from "../../../controlers/AuthController";
 import UserController from "../../../controlers/UserController";
 import { SignupData } from "../../../api/AuthAPI";
+import  Router  from "../../../core/Rourer";
 
 // interface ProfileChangeInfoProps {
 //   title?: string;
@@ -122,6 +123,7 @@ export default class ProfileChangeInfo extends Block {
       href: "/profile",
       class: "link-enter",
       label: "Go to Profil",
+      events: { click:  ()=> Router.go("/profile")}
     });
   }
 

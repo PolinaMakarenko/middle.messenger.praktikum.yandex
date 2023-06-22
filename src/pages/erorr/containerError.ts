@@ -5,6 +5,7 @@ import Link from "../../components/link/link";
 import "./erorrStyle.scss";
 import Erorr404 from "../../../static/404Erorr.png";
 import Erorr500 from "../../../static/500Erorr.png";
+import  Router from "../../core/Rourer";
 
 
 export default class containerError extends Block {
@@ -18,6 +19,7 @@ export default class containerError extends Block {
       href: "/messenger",
       class: "link-enter",
       label: "Go to chats",
+      events: { click:  ()=> Router.go("/messenger")}
     });
 
     switch(window.location.pathname) {

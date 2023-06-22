@@ -7,7 +7,9 @@ import timeFunc from "./timeHelper"
 import ChatsList from "../chatsList/chatsList";
 import { withStore } from "../../core/Store";
 import Buttons from "../button/button";
-import { Router } from "../../core/Rourer";
+import  Router  from "../../core/Rourer";
+import { withRouter } from "../../hocs/withRouter";
+import AuthController from "../../controlers/AuthController";
 
 
 export default class AllChats extends Block {
@@ -31,6 +33,16 @@ export default class AllChats extends Block {
   //   title: "POLI",
   //   lable: "MM",
   // })
+  this.children.buttonLogout = new Buttons({
+      // class: "login-form__submit",
+      label: "LOGOUT",
+      events: {
+        click: (event) => {
+          event.preventDefault()
+          AuthController.logout()
+        }
+      }
+  });
 
   this.children.buttonCreate = new Buttons({
     // class?: string;
@@ -49,11 +61,7 @@ export default class AllChats extends Block {
         href: "/profile",
         class: "link-enter",
         label: "Go to Profil",
-        events: {
-          click: () => {
-            Router.go(this.props.href)
-          }
-        }
+        events: { click:  ()=> Router.go("/profile")}
     });
   }
 

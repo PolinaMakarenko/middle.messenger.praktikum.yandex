@@ -2,7 +2,6 @@ import Router  from "./core/Rourer";
 import FormLogin from "./pages/auth/form-login/form-login"
 import FormReg from "./pages/auth/form-reg/form-reg";
 import ContainerError from "./pages/erorr/containerError";
-import Chats from "./pages/chats/chats"
 import AuthController from "./controlers/AuthController";
 import ProfileUser from "./pages/profile/profile/profile";
 import ProfileChangeInfoUser from "./pages/profile/pChangeInfo/profileChangeInfo";
@@ -20,7 +19,6 @@ export const Routes = {
   Messenger: "/messenger",
   Error400: "/404",
   Error500: "/500",
-  testChat: "/newChat"
 }
 
 window.addEventListener("DOMContentLoaded", async () => {
@@ -31,10 +29,9 @@ window.addEventListener("DOMContentLoaded", async () => {
     .use(Routes.ChangeInfo, ProfileChangeInfoUser)
     .use(Routes.ChangePassword, ProfileChangePasswUser)
     .use(Routes.ChangeAvatar, ProfileChangeFoto)
-    .use(Routes.Messenger, Chats)
+    .use(Routes.Messenger, ChatsTestStroe)
     .use(Routes.Error400,ContainerError)
     .use(Routes.Error500,ContainerError)
-    .use(Routes.testChat, ChatsTestStroe)
 
   let isProtectedRoute = true
 

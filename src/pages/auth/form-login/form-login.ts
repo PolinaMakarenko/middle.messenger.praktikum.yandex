@@ -53,7 +53,7 @@ export default class FormLogin extends Block {
         href: "/registration",
         class: "link-enter",
         label: "Registration",
-        // events: { click:  ()=> Router.go("/sign-up")}
+        events: { click:  ()=> Router.go("/registration")}
     });
   }
   render() {

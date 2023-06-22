@@ -10,6 +10,7 @@ import MessagesController from "../../controlers/MessagerController"
 import { chekValid } from "../../core/Validation";
 import { ChatMessagesSrore } from "../chatMessage/chatMessage";
 import ChatController from "../../controlers/ChatController";
+import Router  from "../../core/Rourer";
 
 
 
@@ -53,6 +54,8 @@ export default class ChatsOne extends Block {
         href: "/profile",
         class: "link-enter",
         label: "Go to Profil",
+        events: { click:  ()=> Router.go("/profile")}
+
     });
   }
 
