@@ -1,6 +1,6 @@
 // import API, { ProfileAPI } from '../api/ProfileAPI'
 import { PasswordData, UserDTO } from '../api/types'
-import API, { UsereAPI } from '../api/UserApt'
+import API, { UsereAPI } from '../api/UsereAPI'
 import Router from "../core/Rourer"
 import { store } from '../core/Store'
 
