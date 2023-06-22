@@ -1,12 +1,12 @@
 // import API, { ProfileAPI } from '../api/ProfileAPI'
 import { PasswordData, UserDTO } from '../api/types'
-import API, { UsereAPI } from '../api/UsereAPI'
+import API, { UserAPI } from '../api/UserAPI'
 import Router from "../core/Rourer"
 import { store } from '../core/Store'
 
 
 export class UserController {
-  private readonly api: UsereAPI
+  private readonly api: UserAPI
   
   constructor() {
     this.api = API
