@@ -31,7 +31,7 @@ export type StateType = {
   },
   addChatUser: {
     isLoading: boolean;
-    eerror?: string
+    error?: string
   }
   selectedId?: number,
 }
