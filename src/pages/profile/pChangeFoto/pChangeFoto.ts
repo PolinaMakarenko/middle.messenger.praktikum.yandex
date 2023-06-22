@@ -5,6 +5,7 @@ import "../profileStyle.scss";
 import Buttons from "../../../components/button/button";
 import Input from "../../../components/input/input";
 import UserController from "../../../controlers/UserController";
+import  Router  from "../../../core/Rourer";
 // import { submit } from "../../../core/Validation";
 
 interface ProfileChangeInfoProps {
@@ -35,6 +36,7 @@ export default class ProfileChangeFoto extends Block {
       href: "/profile",
       class: "link-enter",
       label: "Go to Profil",
+      events: { click:  ()=> Router.go("/profile")}
     });
   }
   render() {

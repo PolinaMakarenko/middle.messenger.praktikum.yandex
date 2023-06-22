@@ -99,7 +99,7 @@ export default class FormReg extends Block {
         class: "link-enter",
         label: "Sign in",
         // eslint-disable-next-line @typescript-eslint/no-empty-function
-        // events: { click:  ()=> Router.go("/")}
+        events: { click:  ()=> Router.go("/")}
     });
   }
   render() {
