@@ -69,7 +69,7 @@ export const submit = (event: Event): void =>{
       (checkInputValue(input)) ? data[input.name] = input.value : ""
   });
   (allFormInputs.length == Object.keys(data).length) 
-  ? ( console.log(data), 
+  ? ( 
   AuthController.signin(data as SignupData)): ""
 //  (event.target as HTMLFormElement ).reset()
 }

@@ -7,10 +7,7 @@ import Input2 from "../input2/input2"
 import UserController from "../../controlers/UserController"
 import ErrorLable from "../errorLable/errorLable"
 
-// interface modalProps {
-//   selectedId: number
 
-// }
 
 class AddUser extends Block {
   constructor(props:any) {
@@ -45,23 +42,17 @@ class AddUser extends Block {
         }) 
         
         this.children.errorFind = new ErrorLable({
-            text: ''
+            text: ""
           })
     }
-    componentDidUpdate(oldProps: any, newProps: any) {
-      // console.log("hhii")
-      // console.log({...this.props})
-
+    componentDidUpdate(_oldProps: any, _newProps: any) {
         this.children.errorFind = this.newError({...this.props})
         return true
     }
 
     private newError(props: any) {
-        // console.log("JIB<RFRFL")
-        // console.log(props.addChatUser.error)
         return new ErrorLable({
-            // console.log()
-          text: props.addChatUser.error || ''
+          text: props.addChatUser.error || ""
         })
       }
    
@@ -86,44 +77,21 @@ const  clickAddUser = async(event: Event)=>{
     const target = event.currentTarget as HTMLButtonElement
 
     const input = target.closest(".modals")?.querySelector(".input_serch") as HTMLInputElement
-    console.log(input.value)
+    // console.log(input.value)
     const data = {login: input.value}
     
     
 
     const user = await UserController.searchUser(data)
-    console.log(user)
+    // console.log(user)
     if (user.length === 0) {
-        return ChatsController.addUserSerError('Пользователь не найден')
+        return ChatsController.addUserSerError("Пользователь не найден")
       }
-    // const data = {login: ""}
-    // const gggflgfl = this.props.myFFF ? this.props.myFFF  : 3
-    ChatsController.addUserSerError('')
+
+    ChatsController.addUserSerError("")
     await ChatsController.addUser([user[0].id])
     ChatsController.addUserModal(false)
-    
-    // eslint-disable-next-line no-console
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    // console.log(this.props.user!)
+
 
 }
 
-// const submitNewChat =  async (event: SubmitEvent): Promise<void> =>{
-//     event.preventDefault();
-//     const inputForm = (event.target as HTMLElement ).getElementsByTagName("input")
-//     const data = {title: ""};
-//     const error = document.querySelector(".error-message-title");
-//     // error.textContent = "fkv"
-//     // console.log(error)
-//     if (chekValid( inputForm[0].name, inputForm[0].value )) {
-//         (error as HTMLElement).textContent = chekValid( inputForm[0].name, inputForm[0].value )
-//     } else {
-//         (error as HTMLElement).textContent = "";
-//         data["title"] = inputForm[0].value;
-//         // console.log(data); 
-//         await ChatController.createChat(data)
-//         await ChatController.getChats()
-//         ChatController.createChatModal(false)
-//         // (event as HTMLFormElement ).reset()
-//     }
-// }

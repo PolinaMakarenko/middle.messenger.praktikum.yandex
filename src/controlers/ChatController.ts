@@ -1,9 +1,7 @@
 import { ChatsAPI } from "../api/ChatsAPI"
 import { UserDTO } from "../api/types"
 import store from "../core/Store"
-// import { IUser } from "../types/IUser"
 import MessagesController from "./MessagerController"
-
 
 
 class ChatsController {
@@ -27,7 +25,6 @@ class ChatsController {
       })
 
       store.set("chats.list.data", chatsList)
-      console.log(store)
     } catch (error) {
       store.set("chats.list.error", (error as Error).message)
     } finally {
@@ -42,12 +39,10 @@ class ChatsController {
 
   createChatModal(isOpen: boolean) {
     store.set("addChatModal", isOpen)
-    console.log(store)
   }
 
   addUserModal(isOpen: boolean){
     store.set("addUserModal", isOpen)
-
   }
 
   deleteUserModal(isOpen:boolean){
@@ -77,15 +72,9 @@ class ChatsController {
 
   selectChat(id: number | undefined) {
     store.set("selectedId", id)
-    // await MessagesController.fetchOldMessages(id)
-
-  }
-  deleteUserSelect(id: number) {
-    store.set('modals.deleteUser.selectedUserId', id)
   }
 
   addUserSerError(error: string) {
-    // console.log("установка")
     store.set("addChatUser.error", error)
   }
 
@@ -105,24 +94,21 @@ class ChatsController {
   }
   
   async getUsers(id: number): Promise<UserDTO[]> {
-    // // console.log("N")
-    // const my = store.getState()
-    // const id = my.selectedId ? my.selectedId : 0
     return this.api.getUsers(id)
   }
 
   async deleteUser(id: number, users: number[]) {
-    store.set("modals.deleteUser.isLoading", true)
+    store.set("deleteUser.isLoading", true)
 
 
     try {
       await this.api.deleteUsers(id, users)
     } catch (error) {
-      store.set("modals.deleteUser.error", (error as Error).message)
+      store.set("deleteUser.error", (error as Error).message)
     } finally {
-      store.set("modals.deleteUser.isLoading", false)
+      store.set("deleteUser.isLoading", false)
       this.deleteUserModal(false)
-      // this.getChats()
+
     }
 
   }

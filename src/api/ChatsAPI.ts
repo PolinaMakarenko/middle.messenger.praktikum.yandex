@@ -1,23 +1,21 @@
-import BaseAPI from './BaseAPI'
-// import { IUser } from '../types/IUser'
-// import { IChat } from '../types/IChat'
-import { ChatDTO, UserDTO } from './types'
+import BaseAPI from "./BaseAPI"
+import { ChatDTO, UserDTO } from "./types"
 
 export class ChatsAPI extends BaseAPI {
   constructor() {
-    super('/chats')
+    super("/chats")
   }
 
   create(data: {title: string}) {
-    return this.http.post('/', data)
+    return this.http.post("/", data)
   }
 
   delete(id: number): Promise<unknown> {
-    return this.http.delete('/', { chatId: id })
+    return this.http.delete("/", { chatId: id })
   }
 
   read(): Promise<ChatDTO[]> {
-    return this.http.get('/')
+    return this.http.get("/")
   }
 
   getUsers(id: number): Promise<Array<UserDTO & { role: string }>> {
@@ -25,15 +23,15 @@ export class ChatsAPI extends BaseAPI {
   }
 
   addUsers(id: number, users: number[]): Promise<unknown> {
-    return this.http.put('/users', { users, chatId: id })
+    return this.http.put("/users", { users, chatId: id })
   }
 
   deleteChat(id: number): Promise<unknown> {
-    return this.http.delete('/', { chatId: id })
+    return this.http.delete("/", { chatId: id })
   }
 
   deleteUsers(id: number, users: number[]): Promise<unknown> {
-    return this.http.delete('/users', { users, chatId: id })
+    return this.http.delete("/users", { users, chatId: id })
   }
 
   async getToken(id: number): Promise<string> {

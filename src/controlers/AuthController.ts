@@ -48,8 +48,6 @@ export class AuthController {
     try {
       const user = await this.api.read()
       store.set("user.data", user)
-      console.log(user)
-      // console.log(store.getState())
     } catch (error) {
       store.set("user.error", (error as Error).message)
       store.set("user.isLoading", false)

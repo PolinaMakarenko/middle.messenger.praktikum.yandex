@@ -1,25 +1,23 @@
 enum METHODS {
-    GET = "GET",
-    POST = "POST",
-    PUT = "PUT",
-    DELETE = "DELETE",
-  }
+  GET = "GET",
+  POST = "POST",
+  PUT = "PUT",
+  DELETE = "DELETE",
+}
   
-  interface Options {
-    method?: METHODS;
-    data?: any;
-    timeout?: number;
-    headers?: { [header: string]: string };
-    options?: Record<string, string>
-  }
+interface Options {
+  method: METHODS;
+  data?: any;
+  timeout?: number;
+  headers?: { [header: string]: string };
+  options?: Record<string, string>
+}
   
-  // type httpMethod = (url: string, options?: Options) => Promise<XMLHttpRequest>;
-  
-  interface httpMethod {
+interface httpMethod {
     <Response>(path: string, data?: { [key: string]: any }): Promise<Response>
-  }
+}
 
-  function queryStringify(data: Record<string, any>) {
+function queryStringify(data: Record<string, any>) {
     if (typeof data !== "object") {
       throw new Error("Data must be object");
     }
@@ -28,89 +26,8 @@ enum METHODS {
     return keys.reduce((result, key, index) => {
       return `${result}${key}=${data[key]}${index < keys.length - 1 ? "&" : ""}`;
     }, "?");
-  }
+}
   
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // class HTTPTransporttsts {
-  //   get: httpMethod = (url, options = {}) => {
-  //     return this.request(
-  //       url,
-  //       { ...options, method: METHODS.GET },
-  //       options.timeout
-  //     );
-  //   };
-  
-  //   post: httpMethod = (url, options = {}) => {
-  //     return this.request(
-  //       url,
-  //       { ...options, method: METHODS.POST },
-  //       options.timeout
-  //     );
-  //   };
-  
-  //   put: httpMethod = (url, options = {}) => {
-  //     return this.request(
-  //       url,
-  //       { ...options, method: METHODS.PUT },
-  //       options.timeout
-  //     );
-  //   };
-  
-  //   delete: httpMethod = (url, options = {}) => {
-  //     return this.request(
-  //       url,
-  //       { ...options, method: METHODS.DELETE },
-  //       options.timeout
-  //     );
-  //   };
-  
-  //   request = (
-  //     url: string,
-  //     options: Options,
-  //     timeout = 5000
-  //   ): Promise<XMLHttpRequest> => {
-  //     const { headers = {}, method, data } = options;
-  
-  //     return new Promise((resolve, reject) => {
-  //       // if (!method) {
-  //       //   reject("No method");
-  //       //   return;
-  //       // }
-
-  
-  //       const xhr = new XMLHttpRequest();
-  //       const isGet = method === METHODS.GET;
-  //       xhr.withCredentials = true;
-  
-  //       xhr.open(method, isGet && !!data ? `${url}${queryStringify(data)}` : url);
-  
-  //       Object.keys(headers).forEach((key) => {
-  //         xhr.setRequestHeader(key, headers[key]);
-  //       });
-  
-  //       xhr.onload = function () {
-  //         resolve(xhr);
-  //       };
-  
-  //       xhr.onabort = reject;
-  //       xhr.onerror = reject;
-  
-  //       xhr.timeout = timeout;
-  //       xhr.ontimeout = reject;
-  
-  //       if (isGet || !data) {
-  //         xhr.send();
-  //       } else {
-  //         xhr.send(data);
-  //       }
-  //     });
-  //   };
-  // }
-
-// const HTTPSer = new HTTPTransporttsts();
-
-// export default HTTPSer;
-
 class HTTPTransporttsts {
   static API_URL = "https://ya-praktikum.tech/api/v2"
   protected endpoint: string

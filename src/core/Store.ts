@@ -1,47 +1,14 @@
 import EventBus from "./EventBus"
 import set from "../services/set"
-import { UserDTO } from "../api/types"
+import { ChatDTO, MessageChat, UserDTO } from "../api/types"
 import Block from "./Block";
 
 
-export interface IMessage {
-  chat_id: number;
-  time: string;
-  type: string;
-  user_id: number;
-  content: string;
-  file?: {
-    id: number;
-    user_id: number;
-    path: string;
-    filename: string;
-    content_type: string;
-    content_size: number;
-    upload_date: string;
-  }
-}
-
-export interface IChat {
-  id: number;
-  title: string;
-  avatar: string;
-  unread_count: number;
-  last_message: {
-    user: UserDTO,
-    time: string;
-    content: string;
-  }
-}
-
-type StoreTypes = {
-  "updated": [ IState ],
-}
-export interface IState {
+export type StateType = {
   chats: {
     users?: UserDTO[]
-    // selectedId?: number
     list: {
-      data: IChat[]
+      data: ChatDTO[]
       isLoading: boolean
     }
   },
@@ -50,7 +17,7 @@ export interface IState {
     error?: string,
     isLoading: boolean
   },
-  messages: Array<IMessage[]>,
+  messages: Array<MessageChat[]>,
   addChatModal: boolean,
   addUserModal: boolean,
   deleteUserModal: boolean,
@@ -58,24 +25,18 @@ export interface IState {
     isLoading: boolean;
     eerror?: string
   },
-  modals: {
-    deleteUser: {
-      show: boolean;
-      isLoading: boolean;
-      selectedUserId?: number;
-      error?: string;
-    },
-  }
+  deleteUser: {      
+    isLoading: boolean;
+    error?: string;
+  },
   addChatUser: {
     isLoading: boolean;
     eerror?: string
   }
   selectedId?: number,
-
-
 }
 
-const initialState: IState = {
+const initialState: StateType = {
   user: {
     isLoading: false,
   },
@@ -95,11 +56,8 @@ const initialState: IState = {
   addChatUser: {
     isLoading: false,
   },
-  modals: {
-    deleteUser: {
-      show: false,
-      isLoading: false
-    }
+  deleteUser: {
+    isLoading: false
   }
 };
 
@@ -109,7 +67,7 @@ const initialState: IState = {
     UPDATED: "updated"
   } as const
 
-  private state = initialState as IState;
+  private state = initialState as StateType;
 
   public set(keypath: string, value: unknown) {
     set(this.state, keypath, value);
@@ -117,18 +75,15 @@ const initialState: IState = {
     this.emit(Store.EVENTS.UPDATED, this.state);
   }
 
-  public getState(): IState {
+  public getState(): StateType {
     return this.state;
   }
 }
 
 export const store = new Store();
 
-// // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// // @ts-ignore
-// // window.store = store;
 
-export function withStore<SP>(mapStateToProps: (state: IState) => any) {
+export function withStore<SP>(mapStateToProps: (state: StateType) => any) {
   return function wrap<P>(Component: typeof Block){
     let previousState: any
 
