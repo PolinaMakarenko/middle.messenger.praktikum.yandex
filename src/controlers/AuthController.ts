@@ -13,7 +13,6 @@ export class AuthController {
   async signup(data: SignupData) {
     store.set("user.isLoading", true)
     try {
-      console.log(data)
       await this.api.signup(data)
 
       await this.getUser()

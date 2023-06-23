@@ -22,10 +22,6 @@ export class UserAPI extends BaseAPI {
     return this.http.post("/search", data)
   }
 
-  read = undefined
-  create = undefined
-  update = undefined
-  delete = undefined
 }
 
 export default new UserAPI()
