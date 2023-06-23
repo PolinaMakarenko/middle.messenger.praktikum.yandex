@@ -1,6 +1,5 @@
-import Block from '../../core/Block'
-// import SendStatus, { ISendStatusProps } from './sendStatus/SendStatus'
-import template from './oneMessage.hbs'
+import Block from "../../core/Block"
+import template from "./oneMessage.hbs"
 
 interface oneMessProps {
   text: string

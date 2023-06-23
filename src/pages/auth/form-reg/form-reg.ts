@@ -86,19 +86,11 @@ export default class FormReg extends Block {
     this.children.buttonForm = new Buttons({
         class: "login-form__submit button",
         label: "Create profile",
-        // events: {
-        //   focusin,
-        //   focusout,
-        // },
     });
     this.children.link = new Link({
         href: "/",
-        // class: "link-enter",
-        // label: "Sign in",
-        // to: "/",
         class: "link-enter",
         label: "Sign in",
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
         events: { click:  ()=> Router.go("/")}
     });
   }
@@ -112,12 +104,11 @@ export default class FormReg extends Block {
 export const submit = (event: Event): void =>{
   event.preventDefault();
   const allFormInputs = document.querySelectorAll("input");
-  const data = {};
+  const data: Record<string, any>  = {};
   allFormInputs.forEach((input: HTMLInputElement) => {
       (checkInputValue(input)) ? data[input.name] = input.value : ""
   });
   (allFormInputs.length == Object.keys(data).length) 
-  ? ( console.log(data), 
+  ? ( 
   AuthController.signup(data as SignupData)): ""
-//  (event.target as HTMLFormElement ).reset()
 }

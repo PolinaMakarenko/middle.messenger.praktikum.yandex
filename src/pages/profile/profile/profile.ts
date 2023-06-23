@@ -24,31 +24,15 @@ interface ProfileProps {
   }
 
 export default class Profile extends Block {
-  // constructor(props: any) {
-    // super({...props})
-    //     email: props?.email,
-    //   login: props?.login, 
-    //   name: props?.first_name, 
-    //   surname: props?.second_name ,
-    //   phone: props?.phone,
-    //   chatName: props?.display_name,
-    //  });
-    // console.log(this.props)
-  // console.log(this.props)
-  // console.log("YOTTT")
+  constructor(props?: ProfileProps) {
+    super({ ...props,
+  });
+  }
 
-  // }
-  // console.log(this.props)
-
-  // store.on(fg)
 
   init() {
-    //проба
     const { data } = store.getState().user;
-    // console.log(this.props)
-    // console.log(checAvatar)
     const checAvatar = (data?.avatar == undefined) ? constAvatar : "https://ya-praktikum.tech/api/v2/resources"+data.avatar
-    // console.log(checAvatar)
 
 
     this.setProps({
@@ -59,8 +43,6 @@ export default class Profile extends Block {
       phone: data?.phone,
       chatName: data?.display_name,
 
-
-      // img:Erorr404 
     });
 
     this.children.avatar = new Avatar({
@@ -107,10 +89,9 @@ export default class Profile extends Block {
   }
 }
 
-const withUser = withStore((state) => {
-  // console.log(state.user.data)
-  return { ...state.user.data }
-})
-// console.log(withUser)
+const withUser = withStore((state) => ( { ...state.user.data }))
+
 
 export const ProfileUser = withUser(Profile)
+
+

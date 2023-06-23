@@ -91,13 +91,11 @@ export const ProfileChangePasswUser = withUser(ProfileChangePassword);
 export const submit = (event: Event): void =>{
   event.preventDefault();
   const allFormInputs = document.querySelectorAll("input");
-  const data = {};
+  const data:Record<string, string> = {};
   const finishInputs = (Array.from(allFormInputs)).filter(el => el.name != "newPassword2")
   finishInputs.forEach((input: HTMLInputElement) => {
     (checkInputValue(input)) ? data[input.name] = input.value : ""    
   });
   (finishInputs.length == Object.keys(data).length) 
-  ? ( console.log(data), 
-  UserController.chahgePassword(data as PasswordData)): ""
-//  (event.target as HTMLFormElement ).reset()
+  ? ( UserController.chahgePassword(data as PasswordData)): ""
 }

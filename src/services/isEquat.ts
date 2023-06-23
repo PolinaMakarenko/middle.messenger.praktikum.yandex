@@ -4,10 +4,10 @@ type PlainObject<T = any> = {
   
   function isPlainObject(value: unknown): value is PlainObject {
     return (
-      typeof value === 'object'
+      typeof value === "object"
       && value !== null
       && value.constructor === Object
-      && Object.prototype.toString.call(value) === '[object Object]'
+      && Object.prototype.toString.call(value) === "[object Object]"
     );
   }
   
@@ -24,12 +24,11 @@ type PlainObject<T = any> = {
       return false;
     }
   
-    // eslint-disable-next-line no-restricted-syntax
+
     for (const [key, value] of Object.entries(lhs)) {
       const rightValue = rhs[key];
       if (isArrayOrObject(value) && isArrayOrObject(rightValue)) {
         if (isEqual(value, rightValue)) {
-          // eslint-disable-next-line no-continue
           continue;
         }
         return false;
@@ -43,17 +42,4 @@ type PlainObject<T = any> = {
     return true;
   }
 
-//   function  timeFunc (someDate: string): string {
-//     const dateConv = new Date(someDate)
-//     const hours = dateConv.getHours()
-//     const minutes = dateConv.getMinutes()
-
-//     let convertMin = minutes.toString();
-//     if (minutes < 10) {
-//         convertMin = `0${minutes}`;
-//     }
-//     return `${hours}:${convertMin}`;
-// }
-// export default timeFunc;
-  
   export default isEqual; 

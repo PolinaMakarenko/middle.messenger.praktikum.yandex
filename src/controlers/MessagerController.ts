@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import store from "../core/Store"
 import WSTransport, { WSTransportEvents } from "../core/WSTransport"
 
@@ -98,7 +99,7 @@ class MessagesController {
 
 const controller = new MessagesController()
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
 // @ts-ignore
 window.messagesController = controller
 

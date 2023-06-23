@@ -27,7 +27,6 @@ export default class AllChats extends Block {
 
 
   this.children.buttonLogout = new Buttons({
-      // class: "login-form__submit",
       label: "LOGOUT",
       events: {
         click: (event) => {
@@ -38,7 +37,7 @@ export default class AllChats extends Block {
   });
 
   this.children.buttonCreate = new Buttons({
-    // class?: string;
+  
     label: "Create Chat",
     events: {
       click: () => {

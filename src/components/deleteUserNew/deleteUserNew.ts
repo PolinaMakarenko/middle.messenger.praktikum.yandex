@@ -25,7 +25,7 @@ class DeleteUser extends Block {
     }) 
     }
 
- componentDidUpdate(oldProps: any, newProps:any) {
+ componentDidUpdate(_oldProps: any, newProps:any) {
       this.children.mainBlok = this.createList(newProps)
       return true
     }
@@ -54,7 +54,6 @@ class DeleteUser extends Block {
 
   const withModal = withStore((state) => {
       return {
-        // ...state,
         deleteUserModal: state.deleteUserModal,
         ...state.deleteUser,
         userId: state.user.data?.id,
