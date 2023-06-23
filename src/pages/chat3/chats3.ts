@@ -10,6 +10,7 @@ import { ModalDeleteUserNew } from "../../components/deleteUserNew/deleteUserNew
 
 
 export default class ChatsTest extends Block {
+
   init() {
     this.children.allComChats = new AllChatsStore({});
     this.children.modalsCreate = new ModalsCreateChat({})
