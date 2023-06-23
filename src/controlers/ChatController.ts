@@ -19,7 +19,6 @@ class ChatsController {
   
       chatsList.map(async (chat) => {
         const token = await this.getToken(chat.id)
-        // console.log(token)
 
         await MessagesController.connect(chat.id, token)
       })
@@ -78,7 +77,7 @@ class ChatsController {
     store.set("addChatUser.error", error)
   }
 
-  async addUser( users: number[]) {
+  async addUser( users: number[] ) {
     store.set("addChatUser.isLoading", true)
     const my = store.getState()
     const id = my.selectedId ? my.selectedId : 0

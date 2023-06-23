@@ -6,7 +6,6 @@ import Buttons from "../../../components/button/button";
 import Input from "../../../components/input/input";
 import UserController from "../../../controlers/UserController";
 import  Router  from "../../../core/Rourer";
-// import { submit } from "../../../core/Validation";
 
 interface ProfileChangeInfoProps {
   title?: string;
@@ -48,15 +47,7 @@ export default class ProfileChangeFoto extends Block {
 const submit = (event: Event): void =>{
   event.preventDefault();
   const allFormInputs  = document.querySelector("input");
+  if (allFormInputs?.files) {
   UserController.changeAvatar(allFormInputs.files[0])
-  // const target = event.target
-  // const gt = typeof(allFormInputs.files[0])
-  // console.log(allFormInputs.files[0])
-
-
-  // const fileName = allFormInputs.files[0];
-  // const formData = new FormData();
-  // formData.append("avatar", fileName);
-
-//  (event.target as HTMLFormElement ).reset()
+  }
 }

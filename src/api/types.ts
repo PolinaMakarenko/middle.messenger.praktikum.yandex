@@ -3,14 +3,24 @@ export type APIError = {
 };
   
 export type UserDTO = {
+    id?: number;
+    login?: string;
+    first_name?: string;
+    second_name?: string;
+    display_name?: string;
+    avatar?: string;
+    phone?: string;
+    email?: string;
+};
+export type UserResponse = {
     id: number;
-    login: string;
-    first_name: string;
-    second_name: string;
-    display_name: string;
-    avatar: string;
-    phone: string;
-    email: string;
+    login?: string;
+    first_name?: string;
+    second_name?: string;
+    display_name?: string;
+    avatar?: string;
+    phone?: string;
+    email?: string;
 };
 
 export type PasswordData = {
@@ -30,7 +40,6 @@ export type ChatDTO = {
         time: string;
         content: string;
         }
-    // created_by: number,
 };
 
 export type MessageChat = {

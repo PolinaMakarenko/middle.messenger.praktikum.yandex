@@ -1,7 +1,7 @@
-// import { Routes } from ".."
 import API, { AuthAPI, SigninData, SignupData } from "../api/AuthAPI"
 import Router from "../core/Rourer"
 import store from "../core/Store"
+import MessagesController from "./MessagerController"
 
 export class AuthController {
   private readonly api: AuthAPI
@@ -60,18 +60,18 @@ export class AuthController {
 
 
   async logout() {
-    store.set('user.isLoading', true)
+    store.set("user.isLoading", true)
     try {
-      // MessagesController.closeAll()
+      MessagesController.closeAll()
 
       await this.api.logout()
-      store.set('user.data', undefined)
+      store.set("user.data", undefined)
 
       Router.go("/")
     } catch (e: any) {
-      store.set('user.error', (e as Error).message)
+      store.set("user.error", (e as Error).message)
     } finally {
-      store.set('user.isLoading', false)
+      store.set("user.isLoading", false)
     }
   }
 }

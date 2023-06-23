@@ -7,19 +7,9 @@ import Input from "../../../components/input/input";
 import { checkInputValue, focusin, focusout } from "../../../core/Validation";
 import { store, withStore } from "../../../core/Store";
 import { UserDTO } from "../../../api/types";
-import AuthController from "../../../controlers/AuthController";
 import UserController from "../../../controlers/UserController";
-import { SignupData } from "../../../api/AuthAPI";
 import  Router  from "../../../core/Rourer";
 
-// interface ProfileChangeInfoProps {
-//   title?: string;
-// }
-
-interface EditProfilePageProps extends UserDTO {
-  selector?: string;
-  events?: Record<string, (args: any) => void>;
-}
 
 export default class ProfileChangeInfo extends Block {
   constructor(props?: any) {
@@ -30,17 +20,6 @@ export default class ProfileChangeInfo extends Block {
 
   init() {
     const { data } = store.getState().user;
-    console.log(this.props)
-
-    // this.children.inputAvatar = new Input({
-    //   class: "container__info_about-user_info",
-    //   name: "avatar",
-    //   label:"Avatar:",
-    //   type: "file",
-    //   placeholder: "",
-    // });
-
-
 
     this.children.inputEmail = new Input({
       class: "container__info_about-user_info",
@@ -160,12 +139,10 @@ export const ProfileChangeInfoUser = withUser(ProfileChangeInfo);
 export const submit = (event: Event): void =>{
   event.preventDefault();
   const allFormInputs = document.querySelectorAll("input");
-  const data = {};
+  const data: Record<string, any>  = {};
   allFormInputs.forEach((input: HTMLInputElement) => {
       (checkInputValue(input)) ? data[input.name] = input.value : ""
   });
   (allFormInputs.length == Object.keys(data).length) 
-  ? ( console.log(data), 
-  UserController.changeInfo(data as UserDTO)): ""
-//  (event.target as HTMLFormElement ).reset()
+  ? ( UserController.changeInfo(data)): ""
 }

@@ -10,7 +10,6 @@ import { ModalDeleteUserNew } from "../../components/deleteUserNew/deleteUserNew
 
 
 export default class ChatsTest extends Block {
-
   init() {
     this.children.allComChats = new AllChatsStore({});
     this.children.modalsCreate = new ModalsCreateChat({})
@@ -18,14 +17,6 @@ export default class ChatsTest extends Block {
     this.children.modalDeleteUser = new ModalDeleteUserNew({})
     this.children.oneComChat = new OneChatSrore({});
   }
-  // componentDidUpdate(oldProps?: any, newProps?: any) {
-  //   this.children.modalnewUser = this.modalAgainnewUser(newProps);
-  //   return true
-  // }
-
-  // private modalAgainnewUser(props: any) {
-  //   return new ModalsAddUser(props)
-  // }
   
   protected render(): DocumentFragment {
     return this.compile(template, this.props);

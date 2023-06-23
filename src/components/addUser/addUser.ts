@@ -70,20 +70,18 @@ const  clickAddUser = async(event: Event)=>{
     const target = event.currentTarget as HTMLButtonElement
 
     const input = target.closest(".modals")?.querySelector(".input_serch") as HTMLInputElement
-    // console.log(input.value)
     const data = {login: input.value}
     
     
 
     const user = await UserController.searchUser(data)
-    console.log(user)
     if (user.length === 0) {
         return ChatsController.addUserSerError("User not found")
       }
 
     ChatsController.addUserSerError("")
-    await ChatsController.addUser([user[0].id])
-    ChatsController.addUserModal(false)
+        await ChatsController.addUser([user[0].id])
+        ChatsController.addUserModal(false)
 
 
 }

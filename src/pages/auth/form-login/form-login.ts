@@ -7,7 +7,7 @@ import "../authStyle.scss";
 import {focusout, focusin, checkInputValue } from "../../../core/Validation";
 import Router  from "../../../core/Rourer";
 import AuthController from "../../../controlers/AuthController";
-import { SignupData } from "../../../api/AuthAPI";
+import { SigninData } from "../../../api/AuthAPI";
 
 
 interface FormLoginProps {
@@ -49,7 +49,6 @@ export default class FormLogin extends Block {
         label: "Sign in",
     });
     this.children.link = new Link({
-        // to: "/sign-up",
         href: "/registration",
         class: "link-enter",
         label: "Registration",
@@ -64,12 +63,12 @@ export default class FormLogin extends Block {
 export const submit = (event: Event): void =>{
   event.preventDefault();
   const allFormInputs = document.querySelectorAll("input");
-  const data = {};
+  const data:  Record<string, any>  = {  login: "",
+    password: ""};
   allFormInputs.forEach((input: HTMLInputElement) => {
       (checkInputValue(input)) ? data[input.name] = input.value : ""
   });
   (allFormInputs.length == Object.keys(data).length) 
   ? ( 
-  AuthController.signin(data as SignupData)): ""
-//  (event.target as HTMLFormElement ).reset()
+  AuthController.signin(data as SigninData)): ""
 }

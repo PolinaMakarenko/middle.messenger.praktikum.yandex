@@ -5,7 +5,11 @@
   "scripts": {
     "dev": "parcel --no-cache src/index.html",
     "build": "parcel build src/index.html",
-    "start": "parcel build src/index.html && node ./server.js"
+    "start": "parcel build src/index.html && node ./server.js",
+    "stylelint": "stylelint **/*.scss",
+    "stylelint:fix": "stylelint **/*.scss --fix",
+    "eslint": "eslint . --ext .ts",
+    "eslint:fix": "eslint --fix --ext .ts"
   },
   "repository": {
     "type": "git",
@@ -34,6 +38,7 @@
     "parcel": "^2.8.3",
     "stylelint": "^15.6.2",
     "stylelint-config-standard": "^33.0.0",
+    "stylelint-config-standard-scss": "^9.0.0",
     "stylelint-scss": "^5.0.0",
     "typescript": "^5.0.4"
   }

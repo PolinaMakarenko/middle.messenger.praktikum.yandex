@@ -6,12 +6,12 @@
     justify-content:center;
 }
 
-@mixin containerBasic ($h, $w) {
+@mixin containerBasic($h, $w) {
     position:absolute;
     left: 0;
     right: 0;
     margin: 0 auto;
-    top: calc(50% - $w/2);
+    top: calc(50% - $w / 2);
     color:white;  
     background-color: $colorPastelPink;
     width: $h;
@@ -23,7 +23,7 @@
     justify-content: center;
 }
 
-@mixin formStyle ($padingImp, $marginBot, $lablePadding) {
+@mixin formStyle($padingImp, $marginBot, $lablePadding) {
     display: flex;
     flex-direction: column;
     padding: 1em;
@@ -77,7 +77,7 @@
     left: 0;
     right: 0;
     margin: 0 auto;
-    top: calc(50% - 600px/2);
+    top: calc(50% - 600px / 2);
     color:white;  
     width: 650px;
     height: 600px;
