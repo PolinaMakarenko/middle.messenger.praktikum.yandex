@@ -78,8 +78,7 @@ const  clickAddUser = async(event: Event)=>{
     if (user.length === 0) {
         return ChatsController.addUserSerError("User not found")
       }
-
-    ChatsController.addUserSerError("")
+        ChatsController.addUserSerError("")
         await ChatsController.addUser([user[0].id])
         ChatsController.addUserModal(false)
 

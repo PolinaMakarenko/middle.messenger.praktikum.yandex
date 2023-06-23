@@ -7,11 +7,11 @@ export default abstract class BaseAPI {
     this.http = new HTTPTransporttsts(endpoint)
   }
 
-  public abstract create?(data: unknown): Promise<unknown>
+  public create?(data: unknown): Promise<unknown>
 
-  public abstract read?(identifier?: string | number): Promise<unknown>
+  public read?(identifier?: string | number): Promise<unknown>
 
-  public abstract update?(identifier: string | number, data: unknown): Promise<unknown>
+  public update?(identifier: string | number, data: unknown): Promise<unknown>
 
-  public abstract delete?(identifier: string | number): Promise<unknown>
+  public delete?(identifier: string | number): Promise<unknown>
 }

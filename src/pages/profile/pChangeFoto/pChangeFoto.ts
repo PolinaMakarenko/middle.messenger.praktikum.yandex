@@ -3,9 +3,9 @@ import Link from "../../../components/link/link";
 import template from "./pChangeFoto.hbs";
 import "../profileStyle.scss";
 import Buttons from "../../../components/button/button";
-import Input from "../../../components/input/input";
 import UserController from "../../../controlers/UserController";
 import  Router  from "../../../core/Rourer";
+import InputFoto from "../../../components/inputFoto/inputFoto";
 
 interface ProfileChangeInfoProps {
   title?: string;
@@ -19,13 +19,7 @@ export default class ProfileChangeFoto extends Block {
   }
 
   init() {
-    this.children.inputAvatar = new Input({
-      class: "container__info_about-user_info",
-      name: "avatar",
-      label:"Avatar:",
-      type: "file",
-      placeholder: "",
-    });
+    this.children.inputAvatar = new InputFoto({});
 
     this.children.button = new Buttons({
       class: "container__info_about-user_button",

@@ -66,7 +66,7 @@ export const submit = (event: Event): void =>{
         (checkInputValue(input)) ? data[input.name] = input.value : ""
     });
     (allFormInputs.length == Object.keys(data).length) 
-    ? ( console.log(data), 
+    ? (
    (event.target as HTMLFormElement ).reset()): ""
 
 }
@@ -81,7 +81,6 @@ export const submitMess = (event: SubmitEvent): void =>{
     } else {
         (error as HTMLElement).textContent = "";
         data[inputForm[0].name] = inputForm[0].value;
-        console.log(data); 
         (event.target as HTMLFormElement ).reset()
     }
 }
