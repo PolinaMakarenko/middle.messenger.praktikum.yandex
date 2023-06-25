@@ -4,7 +4,10 @@ import Input from "../../../components/input/input";
 import Buttons from "../../../components/button/button";
 import Link from "../../../components/link/link";
 import "../authStyle.scss";
-import { focusin, focusout, submit } from "../../../core/Validation";
+import Router  from "../../../core/Rourer";
+import { checkInputValue, focusin, focusout} from "../../../core/Validation";
+import AuthController from "../../../controlers/AuthController";
+import { SignupData } from "../../../api/AuthAPI";
 
 interface FormRegProps {
   title?: string;
@@ -51,7 +54,7 @@ export default class FormReg extends Block {
         focusout,
       },
     });
-    this.children.Surname = new Input({
+    this.children.inputSurname = new Input({
       class: "reg-form__second_name-input",
       name: "second_name",
       label:"Surname:",
@@ -85,9 +88,10 @@ export default class FormReg extends Block {
         label: "Create profile",
     });
     this.children.link = new Link({
-        href: "/login",
+        href: "/",
         class: "link-enter",
         label: "Sign in",
+        events: { click:  ()=> Router.go("/")}
     });
   }
   render() {
@@ -95,3 +99,16 @@ export default class FormReg extends Block {
   }
 }
 
+
+
+export const submit = (event: Event): void =>{
+  event.preventDefault();
+  const allFormInputs = document.querySelectorAll("input");
+  const data: Record<string, any>  = {};
+  allFormInputs.forEach((input: HTMLInputElement) => {
+      (checkInputValue(input)) ? data[input.name] = input.value : ""
+  });
+  (allFormInputs.length == Object.keys(data).length) 
+  ? ( 
+  AuthController.signup(data as SignupData)): ""
+}

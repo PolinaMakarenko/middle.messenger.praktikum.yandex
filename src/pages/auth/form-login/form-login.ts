@@ -4,7 +4,11 @@ import Input from "../../../components/input/input";
 import Buttons from "../../../components/button/button";
 import Link from "../../../components/link/link";
 import "../authStyle.scss";
-import {focusout, focusin, submit } from "../../../core/Validation";
+import {focusout, focusin, checkInputValue } from "../../../core/Validation";
+import Router  from "../../../core/Rourer";
+import AuthController from "../../../controlers/AuthController";
+import { SigninData } from "../../../api/AuthAPI";
+
 
 interface FormLoginProps {
   title?: string;
@@ -48,6 +52,7 @@ export default class FormLogin extends Block {
         href: "/registration",
         class: "link-enter",
         label: "Registration",
+        events: { click:  ()=> Router.go("/registration")}
     });
   }
   render() {
@@ -55,3 +60,15 @@ export default class FormLogin extends Block {
   }
 }
 
+export const submit = (event: Event): void =>{
+  event.preventDefault();
+  const allFormInputs = document.querySelectorAll("input");
+  const data:  Record<string, any>  = {  login: "",
+    password: ""};
+  allFormInputs.forEach((input: HTMLInputElement) => {
+      (checkInputValue(input)) ? data[input.name] = input.value : ""
+  });
+  (allFormInputs.length == Object.keys(data).length) 
+  ? ( 
+  AuthController.signin(data as SigninData)): ""
+}

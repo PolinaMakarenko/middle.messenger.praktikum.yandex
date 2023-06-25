@@ -1,4 +1,4 @@
-@import "../styles/index.scss";
+@import "../styles/index";
 
 .container__greed {
     width: 100vw;
@@ -34,6 +34,16 @@
                 }
             }
         }
+        &__add-new-chat 
+        {
+            align-self:center;
+            padding-bottom: 0.4em;
+            button {
+                background-color: white;
+                border-radius: 10px;
+                color: $colorViolet;
+            } 
+        }
     }
     &__search {
         width: 100%;
@@ -63,6 +73,8 @@
     background-color: $colorSofBlue;
     display:flex;
     flex-direction: column;
+    justify-content: center;
+
     &_info{
         text-align: center;
         height: 60px;
@@ -70,12 +82,21 @@
         font-weight: bold;
         border-bottom: 0.1em solid $colorViolet;
         color: $colorIndigo;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+            button {
+                background-color: $colorViolet;
+                border-radius: 10px;
+                color: white;
+            }
     }
     &_message{
         display: flex;
         flex-direction: column;
         flex: 1 1 auto;
         padding: 2rem;
+        overflow: scroll;
         & > div{
             max-width: 50%;
             margin-top: 5px;
@@ -90,6 +111,12 @@
         &_list_addresser {
             align-self:flex-start;
             background-color: $colorIndigo;
+        }
+        &_start {
+            text-align: center;
+            font-weight: bold;
+            font-size: larger;
+            color: $colorViolet;
         }
     }
     &_new-message_form {
@@ -113,5 +140,37 @@
             border-radius: 10px;
             color: white;
         }
+    }
+}
+
+.modals {
+    opacity: 0;
+    visibility: hidden;
+    width: 100%;
+    max-width: 500px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 30; 
+    box-shadow: 0 3px 10px -0.5px rgba(0 0 0 / 20%); 
+    text-align: center;
+    padding: 10px;
+    padding-top: 20px;
+    border-radius: 3px;
+    background-color: $colorPastelPink;
+    &__show {
+    opacity: 1;
+    visibility: visible; 
+    }
+}
+
+.delete_user_list {
+    &_one{
+        &:hover{
+            background-color: white;
+            border-right: 10px solid $colorViolet;
+        }
+
     }
 }
